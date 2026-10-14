@@ -45,8 +45,20 @@ export async function createLicense({ spotplayerCourseId, name, watermarkText, p
 
     const isTestMode = String(process.env.SPOTPLAYER_TEST_MODE).toLowerCase() === "true";
 
+    // In local sandbox/test mode without live API key, generate a valid simulated license
+    if (isTestMode && (apiKey === "test_spotplayer_key" || apiKey === "your_spotplayer_api_key_here")) {
+        const mockId = "sp_test_" + Date.now().toString(16);
+        const mockKey = "0001test" + Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2) + "ROKAD";
+        return {
+            licenseId: mockId,
+            key: mockKey,
+            url: `/${mockId}/player_access/`,
+        };
+    }
+
     const requestBody = {
         course: [spotplayerCourseId],
+        courses: [spotplayerCourseId],
         name: name || "کاربر کالج رکاد",
         watermark: {
             texts: [{ text: watermarkText || name || "کالج رکاد" }],
@@ -58,6 +70,7 @@ export async function createLicense({ spotplayerCourseId, name, watermarkText, p
     const headers = {
         "Content-Type": "application/json",
         $API: apiKey,
+        $Level: "-1",
         $LEVEL: "-1",
     };
 

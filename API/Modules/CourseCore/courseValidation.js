@@ -50,6 +50,17 @@ export const sprintItemSchema = Joi.object({
     }),
 });
 
+export const resourceItemSchema = Joi.object({
+    _id: Joi.string().optional(),
+    title: Joi.string().trim().required().messages({
+        "string.empty": "عنوان منبع نمی‌تواند خالی باشد",
+        "any.required": "وارد کردن عنوان منبع الزامی است",
+    }),
+    type: Joi.string().trim().allow("").optional().default("ZIP"),
+    size: Joi.string().trim().allow("").optional().default(""),
+    url: Joi.string().trim().allow("").optional().default(""),
+});
+
 
 /**
  * Common Joi fields for course creation.
@@ -110,6 +121,7 @@ export const baseCourseCreateFields = {
     discountCodes: Joi.array().items(discountCodeItemSchema).optional().default([]),
     teachers: Joi.array().items(Joi.string().pattern(objectIdRegex)).optional().default([]),
     sprints: Joi.array().items(sprintItemSchema).optional().default([]),
+    resources: Joi.array().items(resourceItemSchema).optional().default([]),
 };
 
 /**
@@ -160,4 +172,5 @@ export const baseCourseUpdateFields = {
     discountCodes: Joi.array().items(discountCodeItemSchema).optional(),
     teachers: Joi.array().items(Joi.string().pattern(objectIdRegex)).optional(),
     sprints: Joi.array().items(sprintItemSchema).optional(),
+    resources: Joi.array().items(resourceItemSchema).optional(),
 };

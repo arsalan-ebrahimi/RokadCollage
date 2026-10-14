@@ -1,0 +1,232 @@
+/* ============================================================
+   BLOG SINGLE — تک‌صفحهٔ بلاگ
+   دیزاین و ساختار: دقیقاً «BlogSingle» سایت رکاد وب — با پالت کالج
+   (کهربایی/سرمه‌ای/جوهر) به‌جای تم تیل
+   ============================================================ */
+
+/* ---------- صفحه ---------- */
+.rbs-page { position: relative; background: var(--bg-college-tint); padding: 0 0 88px; overflow: hidden; }
+
+/* بریدکرامب */
+.rbs-crumb {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 800; color: rgba(41, 40, 39, .5);
+  padding: 34px 0 10px;
+}
+.rbs-crumb a { color: rgba(41, 40, 39, .62); transition: color .2s ease; }
+.rbs-crumb a:hover { color: var(--college-dark); }
+.rbs-crumb .sep { color: rgba(41, 40, 39, .3); }
+.rbs-crumb .cur {
+  color: rgba(41, 40, 39, .85); max-width: 46ch;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* گرید اصلی: مقاله + سایدبار */
+.rbs-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 20rem;
+  gap: 48px; align-items: start;
+  padding: 22px 0 0;
+}
+@media (max-width: 1024px) { .rbs-layout { grid-template-columns: 1fr; gap: 34px; } }
+
+/* ---------- تگ‌ها ---------- */
+.rbs-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+.rbs-tag {
+  display: inline-block; border: 2px solid var(--ink);
+  border-radius: 999px; padding: 7px 16px;
+  font-size: 13px; font-weight: 900; color: var(--ink);
+}
+.rbs-tag.filled-amber {
+  background: var(--college); color: #fff; border-color: var(--college-dark);
+  box-shadow: 3px 3px 0 var(--college-dark); transform: rotate(-1deg);
+}
+.rbs-tag.filled-navy {
+  background: var(--navy); color: #fff; border-color: var(--navy-hover);
+  box-shadow: 3px 3px 0 var(--navy-hover); transform: rotate(1deg);
+}
+.rbs-tag.ghost { background: #fff; }
+
+/* ---------- تیتر کلمه‌ای چرخان ---------- */
+.rbs-title {
+  display: flex; flex-wrap: wrap; gap: 4px 12px;
+  font-weight: 950; font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.45; color: var(--ink);
+  margin: 0 0 18px;
+}
+.rbs-title .w { display: inline-block; }
+.rbs-title .w.even { transform: rotate(-2deg); }
+.rbs-title .w.odd { transform: rotate(1deg); }
+.rbs-title .w.navy { color: var(--navy); }
+.rbs-title .w.magenta { color: var(--accent); }
+
+/* ---------- متا ---------- */
+.rbs-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+  font-size: 14px; font-weight: 800; color: rgba(41, 40, 39, .55);
+  margin-bottom: 28px;
+}
+.rbs-meta .dot { font-size: 9px; line-height: 1; }
+
+/* ---------- کاور ---------- */
+.rbs-cover { margin-bottom: 34px; }
+.rbs-cover-card {
+  position: relative; height: 320px;
+  border: 3px solid var(--ink); border-radius: 0 2rem 0 2rem;
+  box-shadow: 7px 7px 0 var(--ink);
+  overflow: hidden; display: grid; place-items: center;
+}
+.rbs-cover-cap {
+  background: #fff; border: 2px solid var(--college-dark);
+  box-shadow: 3px 3px 0 var(--college-dark);
+  border-radius: 999px; padding: 9px 20px;
+  font-size: 12.5px; font-weight: 900; color: var(--ink);
+  max-width: calc(100% - 32px);
+}
+@media (max-width: 640px) {
+  .rbs-cover-card { height: 220px; box-shadow: 5px 5px 0 var(--ink); }
+  .rbs-cover-cap { font-size: 11px; padding: 7px 14px; }
+}
+
+/* ---------- متن ---------- */
+.rbs-p {
+  font-size: 16.5px; font-weight: 500; color: rgba(41, 40, 39, .85);
+  line-height: 2.2; margin: 0 0 22px;
+}
+.rbs-h2 {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  font-size: clamp(22px, 2.4vw, 28px); font-weight: 950;
+  margin: 46px 0 18px; scroll-margin-top: 110px;
+}
+.rbs-h2 .bar { width: 8px; height: 28px; border-radius: 999px; flex-shrink: 0; }
+
+/* نقل‌قول */
+.rbs-quote {
+  position: relative; margin: 34px 0;
+  background: var(--college-light); border: 2px solid var(--college);
+  border-radius: 0 1.5rem 0 1.5rem;
+  padding: 30px 34px 26px;
+  box-shadow: 5px 5px 0 var(--college);
+}
+.rbs-quote .mark {
+  position: absolute; top: -22px; right: 22px;
+  font-size: 64px; line-height: 1; font-weight: 950;
+  font-family: Georgia, serif; color: var(--college);
+}
+.rbs-quote blockquote {
+  font-size: 17.5px; font-weight: 800; line-height: 2; color: var(--ink); margin: 0;
+}
+
+/* جعبهٔ نکته */
+.rbs-info {
+  margin: 30px 0;
+  border: 2px solid var(--accent); border-radius: 0 1.25rem 0 1.25rem;
+  overflow: hidden; box-shadow: 4px 4px 0 var(--accent);
+}
+.rbs-info-label {
+  display: block; background: var(--accent); color: #fff;
+  font-size: 13.5px; font-weight: 950; padding: 10px 22px;
+}
+.rbs-info-text {
+  background: var(--female-light); padding: 20px 22px;
+  font-size: 15px; font-weight: 600; line-height: 2; color: var(--ink);
+}
+
+/* ---------- کارت نویسنده (پایین مقاله) ---------- */
+.rbs-author {
+  margin-top: 44px;
+  display: flex; align-items: center; gap: 18px;
+  background: #fff; border: 2px solid var(--ink);
+  border-radius: 0 1.75rem 0 1.75rem; box-shadow: 5px 5px 0 var(--ink);
+  padding: 22px 24px;
+}
+.rbs-author .avatar {
+  width: 60px; height: 60px; flex-shrink: 0;
+  border-radius: 0 14px 0 14px;
+  background: linear-gradient(135deg, var(--college), var(--college-dark));
+  border: 2px solid var(--ink); color: #fff;
+  font-weight: 950; font-size: 18px; display: grid; place-items: center;
+}
+.rbs-author .info { min-width: 0; }
+.rbs-author .info strong { display: block; font-size: 16px; font-weight: 950; color: var(--ink); }
+.rbs-author .info .role { font-size: 12.5px; font-weight: 800; color: var(--college-dark); margin-bottom: 4px; }
+.rbs-author .info p { font-size: 13px; font-weight: 500; color: rgba(41, 40, 39, .6); line-height: 1.9; margin: 0; }
+
+/* ---------- مطالب مرتبط ---------- */
+.rbs-related { margin-top: 48px; }
+.rbs-related-head {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 22px; font-weight: 950; color: var(--ink);
+  margin: 0 0 22px;
+}
+.rbs-related-head .bar { width: 8px; height: 26px; border-radius: 999px; background: var(--accent); flex-shrink: 0; }
+.rbs-rp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.rbs-rp {
+  display: block; background: #fff;
+  border: 2px solid var(--ink); border-radius: 0 1.5rem 0 1.5rem;
+  overflow: hidden; box-shadow: 4px 4px 0 var(--ink);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.rbs-rp:hover { transform: translateY(-5px); box-shadow: 6px 6px 0 var(--ink); }
+.rbs-rp .thumb { height: 96px; border-bottom: 2px solid var(--ink); }
+.rbs-rp .body { padding: 14px 16px 16px; }
+.rbs-rp .tag {
+  display: inline-block; background: #fff; border: 2px solid var(--ink);
+  border-radius: 999px; padding: 2px 10px;
+  font-size: 11px; font-weight: 900; color: var(--ink);
+  margin-bottom: 8px;
+}
+.rbs-rp h3 { font-size: 14px; font-weight: 900; color: var(--ink); line-height: 1.8; margin: 0; }
+.rbs-rp:hover h3 { color: var(--college-dark); }
+
+/* ---------- سایدبار ---------- */
+.rbs-side { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 20px; }
+@media (max-width: 1024px) { .rbs-side { display: none; } }
+.rbs-side-card {
+  background: #fff; border: 2px solid var(--ink);
+  border-radius: 0 1.5rem 0 1.5rem; box-shadow: 4px 4px 0 var(--ink);
+  padding: 18px;
+}
+.rbs-side-card .head { font-size: 15px; font-weight: 950; color: var(--ink); margin-bottom: 12px; }
+.rbs-side-author .row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.rbs-side-author .avatar {
+  width: 46px; height: 46px; flex-shrink: 0;
+  border-radius: 0 12px 0 12px;
+  background: var(--navy); border: 2px solid var(--ink);
+  color: #fff; font-weight: 950; font-size: 15px;
+  display: grid; place-items: center;
+}
+.rbs-side-author strong { display: block; font-size: 13.5px; font-weight: 950; color: var(--ink); line-height: 1.6; }
+.rbs-side-author .role { font-size: 11.5px; font-weight: 800; color: var(--college-dark); }
+.rbs-side-author p { font-size: 12px; font-weight: 500; color: rgba(41, 40, 39, .6); line-height: 1.9; margin: 0; }
+
+.rbs-toc { list-style: none; margin: 0; padding: 0; }
+.rbs-toc a {
+  display: flex; align-items: baseline; gap: 9px; cursor: pointer;
+  padding: 7px 2px; font-size: 12.5px; font-weight: 800;
+  color: rgba(41, 40, 39, .72); line-height: 1.8;
+  border-bottom: 1px dashed rgba(41, 40, 39, .16);
+  transition: color .2s ease;
+}
+.rbs-toc li:last-child a { border-bottom: 0; }
+.rbs-toc a:hover { color: var(--college-dark); }
+.rbs-toc .num { font-weight: 950; color: var(--college); }
+
+.rbs-share-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.rbs-sbtn {
+  background: #fff; border: 2px solid var(--ink);
+  border-radius: 0 10px 0 10px; box-shadow: 3px 3px 0 var(--ink);
+  padding: 8px 14px; font-size: 12.5px; font-weight: 900; color: var(--ink);
+  cursor: pointer; transition: all .2s ease;
+}
+.rbs-sbtn:hover { transform: translateY(-2px); background: var(--college-light); }
+
+/* ---------- ریسپانسیو ---------- */
+@media (max-width: 900px) { .rbs-rp-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .rbs-rp-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .rbs-title { font-size: 28px; }
+  .rbs-p { font-size: 15.5px; }
+  .rbs-author { flex-direction: column; text-align: center; }
+  .rbs-author .avatar { margin-inline: auto; }
+}

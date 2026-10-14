@@ -1,0 +1,799 @@
+/* ============================================================
+   ورود / ثبت‌نام: Auth styles
+   دیزاین سیستم کالج رکاد: نئوبروتالیسم
+   بوردر ۲px جوهر، سایه‌های آفست، رادیوس هماهنگ (اسکویرکل / کات‌کورنر)،
+   دکمه‌های استاندارد بدون انحنای مفرط (Pillهای افراطی حذف شدند)
+   ============================================================ */
+.auth-page,
+.auth-root {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: var(--bg-college-tint, #fdfbf7);
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+.auth-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(87, 57, 10, 0.12) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+/* ---------- کارت اصلی ---------- */
+.auth-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 440px;
+  margin: auto;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 20px 0 20px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 30px 28px 26px;
+  box-shadow: 6px 6px 0 var(--college);
+  box-sizing: border-box;
+  animation: authCardPop 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes authCardPop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.auth-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.auth-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  border: 2px solid var(--ink);
+  background: var(--college-light, #FFF8E7);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  text-decoration: none;
+  transition: all 0.18s ease;
+}
+
+.auth-close-btn:hover {
+  background: var(--college);
+  transform: translate(1px, -1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+/* برند */
+.auth-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.auth-brand .mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  background: var(--college);
+  border: 2px solid var(--ink);
+  box-shadow: 2.5px 2.5px 0 var(--ink);
+  display: grid;
+  place-items: center;
+  padding: 7px;
+  transform: rotate(-3deg);
+}
+.auth-brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+.auth-brand .txt { text-align: right; }
+.auth-brand .txt b { display: block; font-size: 19px; font-weight: 950; color: var(--navy); }
+.auth-brand .txt small {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--college-dark);
+  margin-top: 2px;
+}
+
+/* ---------- تب‌ها ---------- */
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  background: var(--college-light);
+  border: 2px solid var(--ink);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 4px;
+  margin-bottom: 24px;
+  box-shadow: 2.5px 2.5px 0 var(--ink);
+}
+.auth-tabs button {
+  padding: 9px;
+  border-radius: 8px 0 8px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--ink-subtle);
+  background: transparent;
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.auth-tabs button.on,
+.auth-tabs button.active,
+.auth-tab.on,
+.auth-tab.active {
+  background: var(--college);
+  color: var(--ink);
+  border-color: var(--ink);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+  font-weight: 950;
+}
+
+/* هدر فرم */
+.auth-header {
+  margin-bottom: 22px;
+  text-align: right;
+}
+.auth-title {
+  font-size: 19px;
+  font-weight: 950;
+  color: var(--navy);
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+.auth-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-subtle);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ---------- فرم ---------- */
+.auth-form { display: flex; flex-direction: column; gap: 16px; }
+.auth-field { display: flex; flex-direction: column; gap: 7px; }
+.auth-field .lbl {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--navy);
+}
+.auth-field .lbl svg { width: 15px; height: 15px; color: var(--college-dark); }
+.auth-field input {
+  width: 100%;
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 12px 15px;
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink);
+  background: #fff;
+  outline: none;
+  box-shadow: 2px 2px 0 var(--ink-light);
+  transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.auth-field input:focus {
+  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--college);
+  transform: translate(-1px, -1px);
+}
+.auth-field input::placeholder { color: var(--ink-subtle); font-weight: 500; }
+
+/* پوشش فیلد دارای آیکون نمایش رمز */
+.auth-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.auth-input-wrap input {
+  padding-left: 42px;
+  padding-right: 15px;
+}
+.auth-eye-btn {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 6px;
+  display: grid;
+  place-items: center;
+  color: var(--ink-subtle);
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color 0.18s ease;
+  z-index: 2;
+}
+.auth-eye-btn:hover {
+  color: var(--ink);
+}
+
+/* هدر سناریوی فراموشی رمز عبور */
+.auth-header-back {
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.auth-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--college-dark);
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+  transition: color 0.18s ease;
+}
+.auth-back-btn:hover {
+  color: var(--ink);
+}
+.auth-forgot-headline h3 {
+  font-size: 18px;
+  font-weight: 950;
+  color: var(--navy);
+  margin: 0 0 6px;
+}
+.auth-forgot-headline p {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-subtle);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.auth-otp-hint {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.auth-otp-hint small {
+  font-size: 11.5px;
+  color: var(--college-dark);
+  font-weight: 700;
+}
+
+.auth-success-box {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 0 8px;
+}
+.auth-success-icon {
+  width: 54px;
+  height: 54px;
+  background: #c7f9cc;
+  color: #0b525b;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 950;
+  box-shadow: 3px 3px 0 var(--ink);
+  margin-bottom: 6px;
+}
+.auth-success-box b {
+  font-size: 18px;
+  font-weight: 950;
+  color: var(--navy);
+}
+.auth-success-box p {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-subtle);
+  margin: 0 0 12px;
+  line-height: 1.6;
+}
+
+.auth-forgot {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--college-dark);
+  cursor: pointer;
+  padding: 0;
+}
+.auth-forgot:hover { color: var(--accent); }
+
+/* دکمهٔ اصلی */
+.auth-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 4px;
+  background: var(--college);
+  color: var(--ink);
+  padding: 13px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 950;
+  border: 2px solid var(--ink);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
+}
+.auth-submit:hover {
+  background: var(--college-dark);
+  color: #fff;
+  transform: translate(2px, -2px);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+.auth-submit svg { width: 17px; height: 17px; }
+
+/* ---------- OTP ---------- */
+.auth-otp { display: flex; flex-direction: column; gap: 14px; text-align: center; }
+.auth-otp .otp-ic {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto;
+  background: var(--college-light);
+  border: 2px solid var(--ink);
+  border-radius: 14px 0 14px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  display: grid;
+  place-items: center;
+  color: var(--college-dark);
+  box-shadow: 3px 3px 0 var(--college);
+}
+.auth-otp .otp-ic svg { width: 24px; height: 24px; }
+.auth-otp b { font-size: 17px; font-weight: 950; color: var(--navy); }
+.auth-otp p { font-size: 13px; font-weight: 600; color: var(--ink-subtle); margin: 0; }
+.auth-otp p small { display: block; margin-top: 4px; font-size: 11.5px; }
+.otp-boxes { display: flex; gap: 8px; justify-content: center; direction: ltr; }
+.otp-boxes input {
+  width: 46px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 950;
+  font-family: inherit;
+  color: var(--navy);
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  background: #fff;
+  outline: none;
+  box-shadow: 2.5px 2.5px 0 var(--ink-light);
+  transition: all 0.2s ease;
+}
+.otp-boxes input:focus {
+  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--college);
+}
+.auth-otp .auth-forgot { align-self: center; }
+
+/* ---------- ورود مهمان + گوگل ---------- */
+.auth-guest-wrap {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1.5px dashed var(--ink-light);
+  text-align: center;
+  position: relative;
+}
+.auth-guest-wrap .or {
+  display: inline-block;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-pill);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+  padding: 1px 12px;
+  font-size: 11.5px;
+  font-weight: 900;
+  color: var(--ink-subtle);
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.auth-guest {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px 18px;
+  background: #fff;
+  color: var(--navy);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  border: 2px solid var(--navy);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 3px 3px 0 var(--college);
+  transition: all 0.2s ease;
+}
+.auth-guest:hover {
+  background: var(--navy);
+  color: #fff;
+  transform: translate(2px, -2px);
+  box-shadow: 1.5px 1.5px 0 var(--college);
+}
+.auth-guest svg { width: 16px; height: 16px; }
+
+/* دکمهٔ ورود با گوگل */
+.auth-google {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 12px 18px;
+  background: #fff;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  border: 2px solid var(--ink);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
+}
+.auth-google:hover {
+  transform: translate(2px, -2px);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+  background: var(--bg-neutral);
+}
+.auth-google svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.auth-terms {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-subtle);
+}
+.auth-terms a {
+  color: var(--college-dark);
+  font-weight: 800;
+  border-bottom: 1.5px dashed var(--college);
+  text-decoration: none;
+}
+.auth-terms a:hover {
+  color: var(--ink);
+}
+
+/* خطای اعتبارسنجی رمز */
+.auth-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffe3e3;
+  color: #c92a2a;
+  border: 2px solid var(--ink);
+  border-radius: 8px 0 8px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 10px 12px;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.auth-error-msg svg {
+  flex-shrink: 0;
+  color: #c92a2a;
+}
+
+/* ---------- مودال تأیید تغییر رمز عبور ---------- */
+.auth-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 21, 58, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  animation: authFadeIn 0.2s ease-out;
+}
+@keyframes authFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.auth-modal-card {
+  width: 100%;
+  max-width: 380px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 18px 0 18px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 6px 6px 0 var(--college);
+  padding: 26px 22px 22px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: authPopIn 0.22s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes authPopIn {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.auth-modal-ic {
+  width: 52px;
+  height: 52px;
+  background: var(--college-light);
+  color: var(--college-dark);
+  border: 2px solid var(--ink);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  display: grid;
+  place-items: center;
+  box-shadow: 3px 3px 0 var(--ink);
+  margin-bottom: 14px;
+}
+.auth-modal-ic svg {
+  width: 26px;
+  height: 26px;
+}
+
+.auth-modal-title {
+  font-size: 17.5px;
+  font-weight: 950;
+  color: var(--navy);
+  margin: 0 0 8px;
+}
+
+.auth-modal-desc {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-subtle);
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.auth-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.auth-modal-btn-confirm {
+  width: 100%;
+  padding: 11px 18px;
+  background: var(--college);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 950;
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.2s ease;
+}
+.auth-modal-btn-confirm:hover {
+  background: var(--college-dark);
+  color: #fff;
+  transform: translate(2px, -2px);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+
+.auth-modal-btn-cancel {
+  width: 100%;
+  padding: 10px 18px;
+  background: #fff;
+  color: var(--ink-subtle);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 800;
+  border: 1.5px solid var(--ink-light);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+.auth-modal-btn-cancel:hover {
+  background: var(--bg-neutral);
+  color: var(--ink);
+  border-color: var(--ink);
+}
+
+/* ---------- مودال تبریک ثبت‌نام و هدایت ---------- */
+.auth-reg-success-card {
+  max-width: 440px;
+  padding: 32px 26px 26px;
+  background: #fff;
+  border: 2.5px solid var(--ink);
+  box-shadow: 7px 7px 0 var(--college);
+  border-radius: 20px 0 20px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  text-align: center;
+}
+
+.auth-reg-success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--college-light, #FFF8E7);
+  color: var(--navy);
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 12.5px;
+  font-weight: 900;
+  margin-bottom: 14px;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.auth-reg-success-ic {
+  width: 64px;
+  height: 64px;
+  background: #E8F8F0;
+  color: #10B981;
+  border: 2.5px solid var(--ink);
+  border-radius: 16px 0 16px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  display: grid;
+  place-items: center;
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+  margin: 0 auto 16px;
+}
+.auth-reg-success-ic svg {
+  width: 32px;
+  height: 32px;
+}
+
+.auth-reg-success-title {
+  font-size: 20px;
+  font-weight: 950;
+  color: var(--navy);
+  margin: 0 0 8px;
+  line-height: 1.35;
+}
+
+.auth-reg-success-desc {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink-subtle);
+  line-height: 1.65;
+  margin: 0 0 22px;
+}
+
+.auth-reg-target-box {
+  background: #FAFAF9;
+  border: 1.8px dashed var(--ink-light, #CBD5E1);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: var(--ink);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  text-align: right;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-reg-target-box svg {
+  flex-shrink: 0;
+  color: var(--college-dark, #D97706);
+}
+
+.auth-reg-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.auth-reg-primary-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: var(--college);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14.5px;
+  font-weight: 950;
+  border: 2px solid var(--ink);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+  transition: all 0.18s ease;
+  text-decoration: none;
+}
+.auth-reg-primary-btn:hover {
+  background: var(--college-dark);
+  color: #fff;
+  transform: translate(2px, -2px);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+
+.auth-reg-secondary-btn {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 18px;
+  background: #fff;
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 800;
+  border: 1.8px solid var(--ink);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink-light);
+  transition: all 0.18s ease;
+  text-decoration: none;
+}
+.auth-reg-secondary-btn:hover {
+  background: var(--bg-neutral, #F4F4F5);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: translate(-1px, -1px);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .auth-card { padding: 26px 20px 22px; border-radius: 16px 0 16px 0; }
+  .otp-boxes input { width: 40px; height: 46px; font-size: 17px; }
+  .auth-reg-success-card { padding: 26px 18px 20px; }
+}
+

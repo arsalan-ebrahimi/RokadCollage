@@ -1,0 +1,1458 @@
+/* ============================================================
+   صفحهٔ کاتالوگ و هاب جامع دوره‌ها (Courses Hub)
+   دیزاین سیستم نئوبروتالیسم کالج رکاد
+   ============================================================ */
+
+.ch-page {
+  direction: rtl;
+  color: var(--ink, #292827);
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding-bottom: 120px;
+  overflow-x: hidden;
+}
+
+/* ============ هدر و هیرو ============ */
+.ch-hero {
+  position: relative;
+  background: var(--bg-college-tint, #fff8ea);
+  border-bottom: 2.5px solid var(--ink);
+  padding: 48px 0 56px;
+  overflow: hidden;
+}
+
+.ch-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.ch-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-subtle, #62605b);
+  margin-bottom: 22px;
+}
+
+.ch-crumb a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.ch-crumb a:hover {
+  color: var(--college-dark, #ba7b16);
+}
+
+.ch-crumb-sep {
+  color: var(--college, #f8a41d);
+  font-weight: 700;
+}
+
+.ch-crumb-cur {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.ch-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 7px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 2.5px 2.5px 0 var(--ink);
+  transform: rotate(-1.5deg);
+  margin-bottom: 20px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ch-hero-badge:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.ch-hero-title {
+  font-size: clamp(28px, 4.4vw, 44px);
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 0 0 16px;
+  letter-spacing: -0.015em;
+  max-width: 840px;
+  color: var(--ink);
+}
+
+.ch-marker {
+  position: relative;
+  display: inline-block;
+  padding: 0 6px;
+  z-index: 0;
+}
+
+.ch-marker::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  left: -2px;
+  top: 52%;
+  height: 0.44em;
+  margin-top: -0.22em;
+  background: var(--college, #F8A41D);
+  border-radius: 4px 9px 3px 8px;
+  transform: rotate(-2deg);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.ch-hero-desc {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--ink-subtle, #5c5a55);
+  max-width: 720px;
+  margin: 0 0 28px;
+  font-weight: 500;
+}
+
+
+/* نوار آمار */
+.ch-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.ch-stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 8px 18px;
+  box-shadow: 3px 3px 0 var(--ink);
+  font-size: 13.5px;
+  font-weight: 800;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ch-stat-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 var(--college, #f8a41d);
+}
+
+.ch-stat-pill svg {
+  color: var(--college-dark, #ba7b16);
+  flex-shrink: 0;
+}
+
+.ch-stat-pill strong {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* کانتینر اصلی محتوا */
+.ch-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ============ ساختار سکشن‌ها و فاصله‌گذاری ============ */
+.ch-sec {
+  margin-bottom: 104px;
+}
+
+.ch-sec:first-child {
+  margin-top: 56px;
+}
+
+.ch-sec:last-child {
+  margin-bottom: 24px;
+}
+
+/* ============ هدینگ سکشن‌ها ============ */
+.ch-sec-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 0 34px;
+  padding-bottom: 16px;
+  border-bottom: 2px dashed rgba(41, 40, 39, 0.2);
+}
+
+.ch-sec-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ch-sec-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--bg-college-tint, #fff8ea);
+  border: 1.5px solid var(--ink);
+  padding: 3px 12px;
+  border-radius: 8px;
+  width: fit-content;
+  box-shadow: 2px 2px 0 var(--college, #f8a41d);
+}
+
+.ch-sec-tag svg {
+  color: var(--college-dark, #ba7b16);
+}
+
+.ch-sec-title {
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.35;
+  color: var(--ink);
+}
+
+.ch-sec-desc {
+  font-size: 14.5px;
+  color: var(--ink-subtle, #62605b);
+  margin: 0;
+  max-width: 600px;
+}
+
+/* ============ سکشن ۱: دوره‌های پیشنهادی ============ */
+.ch-dept-tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.ch-dept-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 8px 18px;
+  font-size: 13.5px;
+  font-weight: 800;
+  font-family: inherit;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+}
+
+.ch-dept-tab:hover {
+  transform: translate(2px, -2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.ch-dept-tab.active {
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  transform: translate(1px, -1px);
+}
+
+.ch-dept-tab.tab-it.active {
+  background: var(--navy-alt, #202a5a);
+  color: #ffffff;
+}
+
+.ch-dept-tab.tab-business.active {
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+}
+
+.ch-dept-tab.tab-languages.active {
+  background: var(--teal-alt, #1F9688);
+  color: #ffffff;
+}
+
+/* سربرگ دپارتمان در دوره‌های پیشنهادی و دکمه مشاهده با فلش دایره‌ای */
+.ch-suggested-dept-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.ch-dept-more-link {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  text-decoration: none;
+  margin-right: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.18s ease;
+}
+
+.ch-dept-more-link:hover {
+  color: var(--college-dark, #ba7b16);
+}
+
+.ch-dept-more-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--college, #f8a41d);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ch-dept-more-link:hover .ch-dept-more-arrow {
+  transform: translateX(-3px);
+  background: #fbb63d;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+/* نوار ترکیبی فیلترها (دپارتمان + نحوه برگزاری) */
+.ch-filters-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.ch-mode-filter-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 4px;
+  box-shadow: 2.5px 2.5px 0 var(--ink);
+}
+
+.ch-mode-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 6px 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink-subtle);
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.ch-mode-filter-btn:hover {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.ch-mode-filter-btn.active {
+  background: var(--ink);
+  color: #ffffff;
+  border-color: var(--ink);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.ch-mode-filter-btn.mode-in-person.active {
+  background: #E88900;
+  color: #ffffff;
+}
+
+.ch-mode-filter-btn.mode-online.active {
+  background: var(--teal-alt, #1F9688);
+  color: #ffffff;
+}
+
+/* ردیف نشان‌ها داخل کارت دوره */
+.ch-card-badges-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* دکمه سیو روی کارت پرچم‌دار */
+.ch-flag-save-btn {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 4;
+}
+
+/* گرید ۳ کارتی پیشنهادی */
+.ch-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+/* کارت دوره نئوبروتال */
+.ch-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 2px solid var(--ink);
+  border-radius: 16px 4px 16px 4px;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 4px 4px 0 var(--ink);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.ch-card:hover {
+  transform: translate(2px, -3px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.ch-card-cover {
+  position: relative;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+.ch-cover-pat {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.ch-card-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px 0 6px 0;
+  color: var(--ink);
+  background: #ffffff;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.ch-card-tag.hot {
+  background: #ff4757;
+  color: #fff;
+}
+
+.ch-card-tag.special {
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+}
+
+.ch-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 16px 18px 18px;
+  gap: 10px;
+}
+
+.ch-card-dept-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border: 1.5px solid var(--ink);
+  border-radius: 4px;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ch-card-title {
+  font-size: 15.5px;
+  font-weight: 800;
+  line-height: 1.55;
+  margin: 0;
+  color: var(--ink);
+  min-height: 48px;
+}
+
+.ch-card-inst {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-subtle, #62605b);
+}
+
+.ch-card-av {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1.5px solid var(--ink);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--college-light, #FFF4E5);
+  color: var(--ink);
+}
+
+.ch-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-subtle, #62605b);
+  border-top: 1px dashed rgba(41, 40, 39, 0.2);
+  padding-top: 8px;
+  margin-top: auto;
+}
+
+.ch-card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ch-rate {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.ch-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 2px solid var(--ink);
+  margin-top: 8px;
+}
+
+.ch-card-price {
+  display: flex;
+  flex-direction: column;
+}
+
+.ch-card-price s {
+  font-size: 11px;
+  color: var(--ink-subtle, #62605b);
+}
+
+.ch-card-price b {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ch-card-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink);
+  color: #ffffff;
+  border: 2px solid var(--ink);
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.18s, background-color 0.18s;
+}
+
+.ch-card:hover .ch-card-btn {
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+  transform: scale(1.04);
+}
+
+.ch-card[data-dept="languages"] .ch-card-btn,
+.ch-card[data-dept="it"] .ch-card-btn {
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+}
+
+.ch-card[data-dept="languages"]:hover .ch-card-btn,
+.ch-card[data-dept="it"]:hover .ch-card-btn {
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+  transform: scale(1.04);
+}
+
+.ch-card[data-dept="languages"] .ch-card-dept-badge,
+.ch-card[data-dept="it"] .ch-card-dept-badge {
+  background: var(--college, #F8A41D) !important;
+  color: var(--ink, #18181B) !important;
+  border-color: var(--ink) !important;
+}
+
+.ch-card[data-dept="languages"] .ch-card-tag:not(.hot),
+.ch-card[data-dept="it"] .ch-card-tag:not(.hot) {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #18181B);
+  border-color: var(--ink);
+}
+
+/* ============ سکشن ۲: دوره‌های پرچم‌دار + ورود به دپارتمان‌ها ============ */
+.ch-flagships {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.ch-flag-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  background: #ffffff;
+  border: 2.5px solid var(--ink);
+  border-radius: 20px 4px 20px 4px;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 6px 6px 0 var(--ink);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.ch-flag-card:hover {
+  transform: translate(2px, -3px);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+
+.ch-flag-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  border-left: 2.5px solid var(--ink);
+  overflow: hidden;
+}
+
+.ch-flag-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.ch-flag-dept-chip {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px 0 8px 0;
+  background: #ffffff;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.ch-flag-icon-wrap {
+  position: relative;
+  z-index: 1;
+  width: 90px;
+  height: 90px;
+  border-radius: 20px;
+  border: 2.5px solid var(--ink);
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  box-shadow: 4px 4px 0 var(--ink);
+  margin-bottom: 14px;
+}
+
+.ch-flag-badge {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ff4757;
+  color: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 11.5px;
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.ch-flag-content {
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.ch-flag-top {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ch-flag-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-subtle, #62605b);
+}
+
+.ch-flag-meta-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ch-flag-meta-row .course-mode-badge {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4.5px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  margin-right: auto;
+}
+
+/* بج نحوه برگزاری دوره (عمومی برای همه کارت‌ها) */
+.course-mode-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 6px;
+  border: 1.5px solid var(--ink);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+
+.course-mode-badge.in-person {
+  background: #FFF0D4;
+  color: #8C4D00;
+}
+
+.course-mode-badge.online {
+  background: #E0F5F2;
+  color: #0E7063;
+}
+
+.ch-flag-title {
+  font-size: clamp(20px, 2.5vw, 25px);
+  font-weight: 800;
+  color: var(--ink);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ch-flag-desc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-subtle, #62605b);
+  margin: 0;
+}
+
+.ch-flag-stats-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.ch-flag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-neutral, #FAF8F5);
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  padding: 4px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.pill-text-short { display: none; }
+.pill-text-full { display: inline; }
+
+.ch-flag-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 2px dashed rgba(41, 40, 39, 0.2);
+}
+
+.ch-flag-price-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.ch-flag-price-block s {
+  font-size: 12px;
+  color: var(--ink-subtle, #62605b);
+}
+
+.ch-flag-price-block b {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ch-flag-btn-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ch-btn-view-course {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.ch-btn-view-course:hover {
+  transform: translate(2px, -2px);
+  box-shadow: 1px 1px 0 var(--ink);
+  filter: brightness(1.05);
+}
+
+.ch-btn-dept-gateway {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  font-size: 13.5px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ch-btn-dept-gateway:hover {
+  transform: translate(2px, -2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* تم‌های رنگی برای دپارتمان‌های پرچم‌دار */
+.flag-it .ch-flag-visual {
+  background: var(--male-light, #EAF0FF);
+}
+.flag-it .ch-btn-dept-gateway {
+  background: var(--navy-alt, #202a5a);
+  color: #ffffff;
+}
+
+.flag-business .ch-flag-visual {
+  background: var(--college-light, #FFF4E5);
+}
+.flag-business .ch-btn-dept-gateway {
+  background: var(--college, #F8A41D);
+  color: var(--ink);
+}
+
+.flag-languages .ch-flag-visual {
+  background: var(--teal-light, #E0F5F2);
+}
+.flag-languages .ch-btn-dept-gateway {
+  background: var(--teal-alt, #1F9688);
+  color: #ffffff;
+}
+
+/* ============ سکشن ۳: اساتید برجسته (تک‌ردیفه و اسکرولی) ============ */
+.ch-inst-head-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+.ch-inst-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ch-inst-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: #ffffff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: pointer;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background-color 0.16s ease;
+}
+
+.ch-inst-nav-btn:hover {
+  transform: translate(1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+  background: var(--college, #f8a41d);
+}
+
+.ch-inst-nav-btn:active {
+  transform: translate(0, 0);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.ch-inst-nav-btn:disabled {
+  opacity: 0.35;
+  box-shadow: none;
+  cursor: default;
+  transform: none;
+}
+
+.ch-inst-track-wrap {
+  position: relative;
+  margin-top: 14px;
+}
+
+.ch-inst-track {
+  display: flex;
+  gap: 22px;
+  overflow-x: auto;
+  padding: 10px 14px 20px;
+  margin: -10px -14px -20px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.ch-inst-track::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.ch-inst-track.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.ch-inst-track.is-dragging .ch-inst-card {
+  pointer-events: none;
+}
+
+.ch-inst-card {
+  position: relative;
+  flex: 0 0 290px;
+  width: 290px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 2px solid var(--ink);
+  border-radius: 18px 4px 18px 4px;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 4px 4px 0 var(--ink);
+  overflow: hidden;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.ch-inst-card:hover {
+  transform: translate(2px, -3px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* نیمه بالایی با رنگ سازمانی کالج */
+.ch-inst-cover {
+  position: relative;
+  height: 84px;
+  background: var(--college, #F8A41D);
+  border-bottom: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+.ch-inst-cover-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.ch-inst-dept-badge {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  background: #ffffff;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+
+/* آواتار در بالا و وسط، روی مرز کاور و بدنه */
+.ch-inst-av-centered-wrap {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: -38px;
+  z-index: 3;
+}
+
+.ch-inst-av-box {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: 20px;
+  border: 2.2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  overflow: hidden;
+  background: #ffffff;
+  flex-shrink: 0;
+}
+
+.ch-inst-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ch-inst-fallback-av {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  background: var(--bg-college-tint, #fff8ea);
+}
+
+/* بدنه و توضیحات پایین کارت */
+.ch-inst-body-centered {
+  padding: 12px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.ch-inst-name {
+  font-size: 16.5px;
+  font-weight: 800;
+  margin: 0 0 4px;
+  color: var(--ink);
+}
+
+.ch-inst-role {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--college-dark, #ba7b16);
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+.ch-inst-bio {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink-subtle, #5c5a55);
+  line-height: 1.7;
+  margin: 0 0 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3.4em;
+  text-align: center;
+}
+
+.ch-inst-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1.5px dashed rgba(41, 40, 39, 0.2);
+  padding-top: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.ch-inst-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ============ واکنش‌گرایی (Responsive) ============ */
+@media (max-width: 1080px) {
+  .ch-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .ch-flag-card {
+    grid-template-columns: 280px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ch-hero {
+    padding: 30px 0 40px;
+  }
+  .ch-sec {
+    margin-bottom: 72px;
+  }
+  .ch-sec:first-child {
+    margin-top: 36px;
+  }
+  .ch-sec-head {
+    margin-bottom: 24px;
+  }
+  .ch-courses-carousel-wrap {
+    position: relative;
+    overflow-x: hidden;
+    padding: 8px 4px 18px;
+    touch-action: pan-y;
+    cursor: grab;
+  }
+  .ch-courses-carousel-wrap.dragging {
+    cursor: grabbing;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .ch-courses-carousel-wrap.dragging .ch-grid-3,
+  .ch-courses-carousel-wrap.dragging .ch-flagships {
+    transition: none !important;
+  }
+  .ch-grid-3 {
+    display: flex;
+    align-items: stretch;
+    gap: 16px;
+    grid-template-columns: none;
+    transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+    will-change: transform;
+  }
+  .ch-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .ch-flagships {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 20px;
+    transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+    will-change: transform;
+  }
+  .ch-flag-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    grid-template-columns: 1fr;
+  }
+  .ch-mobile-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 14px;
+  }
+  .ch-mobile-dots .cmt3-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .ch-mobile-dots .cmt3-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: rgba(41, 40, 39, 0.2);
+    transition: all 0.3s;
+    padding: 0;
+    border: 1.5px solid transparent;
+    cursor: pointer;
+  }
+  .ch-mobile-dots .cmt3-dot.active {
+    background: var(--college, #F8A41D);
+    width: 32px;
+    border-color: var(--ink);
+  }
+  .ch-flag-card {
+    grid-template-columns: 1fr;
+    border-radius: 16px 4px 16px 4px;
+    box-shadow: 4px 4px 0 var(--ink);
+    overflow: hidden;
+  }
+  .ch-flag-visual {
+    border-left: none;
+    border-bottom: 2px solid var(--ink);
+    padding: 18px 14px;
+    height: 150px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .ch-flag-save-btn {
+    position: absolute !important;
+    top: 12px !important;
+    left: 12px !important;
+    width: 34px !important;
+    height: 34px !important;
+    z-index: 5;
+  }
+  .ch-flag-dept-chip {
+    display: none !important;
+  }
+  .ch-flag-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    bottom: auto;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3.5px 12px;
+    border-radius: 999px;
+    box-shadow: 2px 2px 0 var(--ink);
+    z-index: 2;
+  }
+  .ch-flag-icon-wrap {
+    display: grid !important;
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+    border: 2px solid var(--ink);
+    box-shadow: 3.5px 3.5px 0 var(--ink);
+    margin: 8px 0 0;
+    position: relative;
+    z-index: 1;
+  }
+  .ch-flag-icon-wrap svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .ch-flag-content {
+    padding: 20px 16px 16px;
+    gap: 16px;
+  }
+  .ch-flag-top {
+    gap: 12px;
+  }
+  .ch-flag-meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 0;
+  }
+  .ch-flag-meta-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-subtle, #62605b);
+  }
+  .ch-flag-meta-info strong {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .ch-flag-meta-row .course-mode-badge {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    flex-shrink: 0;
+  }
+  .ch-flag-title {
+    font-size: 17px !important;
+    font-weight: 800;
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 2px 0 0;
+    text-align: right;
+  }
+  .ch-flag-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--ink-subtle, #62605b);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
+    text-align: right;
+  }
+  .ch-flag-stats-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    margin-top: 6px;
+  }
+  .ch-flag-pill {
+    flex: 1 1 0;
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 4px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    border-radius: 6px;
+    background: var(--bg-neutral, #FAF8F5);
+    border: 1.5px solid var(--ink);
+    box-shadow: 1.5px 1.5px 0 var(--ink);
+    overflow: hidden;
+  }
+  .ch-flag-pill .pill-text-full {
+    display: none !important;
+  }
+  .ch-flag-pill .pill-text-short {
+    display: inline !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ch-flag-pill svg {
+    flex-shrink: 0;
+    width: 13px;
+    height: 13px;
+  }
+  .ch-flag-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1.5px dashed rgba(41, 40, 39, 0.25);
+  }
+  .ch-flag-price-block {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .ch-flag-price-block s {
+    font-size: 11px;
+    color: var(--ink-subtle, #62605b);
+  }
+  .ch-flag-price-block b {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .ch-flag-btn-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .ch-btn-view-course {
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 8px;
+    justify-content: center;
+    white-space: nowrap;
+    background: var(--college, #F8A41D);
+    color: var(--ink);
+    border: 1.5px solid var(--ink);
+    box-shadow: 2px 2px 0 var(--ink);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .ch-btn-dept-gateway {
+    display: none;
+  }
+  .ch-inst-card {
+    flex: 0 0 265px;
+    width: 265px;
+  }
+  .ch-inst-head-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .ch-inst-nav-btns {
+    align-self: flex-end;
+  }
+}

@@ -1,0 +1,319 @@
+/* ============================================================
+   استایل مودال مشاوره رایگان کالج رکاد
+   ============================================================ */
+
+.cmod-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(14, 21, 41, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  animation: cmodFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cmodFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cmod-card {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  background: #ffffff;
+  border: 2.5px solid var(--ink);
+  border-radius: 20px 0 20px 0;
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 2rem 2.2rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  animation: cmodSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cmodSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.cmod-close {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 34px;
+  height: 34px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cmod-close:hover {
+  transform: translateY(-1.5px) rotate(90deg);
+  background: var(--female-light);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.cmod-head {
+  margin-bottom: 1.5rem;
+  padding-left: 2.5rem;
+}
+
+.cmod-pill {
+  display: inline-block;
+  background: var(--college-light);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px 0 6px 0;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--college-darker);
+  margin-bottom: 0.6rem;
+}
+
+.cmod-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.cmod-accent {
+  color: var(--accent);
+  text-decoration: underline wavy var(--college);
+  text-underline-offset: 4px;
+}
+
+.cmod-sub {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.cmod-error {
+  background: #fde8e8;
+  border: 1.5px solid #e02424;
+  border-radius: 6px 0 6px 0;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #9b1c1c;
+  margin-bottom: 1rem;
+}
+
+.cmod-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cmod-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cmod-field label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cmod-field label .req {
+  color: #e02424;
+}
+
+.cmod-field input[type="text"],
+.cmod-field input[type="tel"],
+.cmod-field textarea {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 8px 0 8px 0;
+  font-size: 0.9rem;
+  color: var(--ink);
+  font-family: inherit;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: all 0.18s ease;
+}
+
+.cmod-field input:focus,
+.cmod-field textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.cmod-depts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+@media (max-width: 520px) {
+  .cmod-depts {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cmod-dept-opt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0.55rem 0.75rem;
+  background: var(--bg-alt, #f8f9fa);
+  border: 1.8px solid var(--ink);
+  border-radius: 8px 0 8px 0;
+  cursor: pointer;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cmod-dept-opt input {
+  position: absolute;
+  opacity: 0;
+}
+
+.cmod-dept-opt:hover {
+  transform: translateY(-1.5px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.cmod-dept-opt.active {
+  background: var(--college-light);
+  border-color: var(--ink);
+  box-shadow: 2.5px 2.5px 0 var(--ink);
+}
+
+.cmod-dept-name {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cmod-dept-desc {
+  font-size: 0.7rem;
+  color: var(--ink-subtle);
+  margin-top: 2px;
+}
+
+.cmod-foot {
+  margin-top: 0.5rem;
+}
+
+.cmod-submit {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--college);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  padding: 0.8rem 1.4rem;
+  font-size: 0.95rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cmod-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.cmod-submit:active {
+  transform: translateY(1px);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+
+/* Success state */
+.cmod-success {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.cmod-success-badge {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.2rem;
+  background: var(--teal-light);
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--teal-dark);
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+}
+
+.cmod-success h3 {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 0.6rem;
+}
+
+.cmod-success p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  margin-bottom: 1.2rem;
+}
+
+.cmod-success-info {
+  background: #f8fafc;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px 0 8px 0;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+  margin-bottom: 1.5rem;
+}
+
+.cmod-success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.cmod-btn-ghost {
+  width: 100%;
+  background: transparent;
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  padding: 0.75rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cmod-btn-ghost:hover {
+  background: #f1f5f9;
+  transform: translateY(-1.5px);
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+}

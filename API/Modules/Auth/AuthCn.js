@@ -25,10 +25,26 @@ const formatAuthUser = (user) => ({
   birthDate: user.birthDate,
 });
 
+export const phoneFilter = (phone) => {
+  const normalized = normalizePersianDigits(phone).trim().replace(/\s+/g, "");
+  const variations = [normalized];
+  if (normalized.startsWith("+98")) {
+    variations.push("0" + normalized.slice(3));
+    variations.push(normalized.slice(3));
+  } else if (normalized.startsWith("09")) {
+    variations.push("+98" + normalized.slice(1));
+    variations.push(normalized.slice(1));
+  } else if (normalized.startsWith("9")) {
+    variations.push("0" + normalized);
+    variations.push("+98" + normalized);
+  }
+  return { phoneNumber: { $in: Array.from(new Set(variations)) } };
+};
+
 export const auth = catchAsync(async (req, res, next) => {
   const { phoneNumber } = req.body;
   const cleanPhone = normalizePersianDigits(phoneNumber).trim();
-  const user = await User.findOne({ phoneNumber: cleanPhone }).select("+password");
+  const user = await User.findOne(phoneFilter(cleanPhone)).select("+password");
 
   if (!user || !user.password) {
     const resultSms = await sendAuthCode(cleanPhone);
@@ -64,7 +80,7 @@ export const loginWithPassword = catchAsync(async (req, res, next) => {
   const { phoneNumber, password } = req.body;
   const cleanPhone = normalizePersianDigits(phoneNumber).trim();
 
-  const user = await User.findOne({ phoneNumber: cleanPhone }).select("+password");
+  const user = await User.findOne(phoneFilter(cleanPhone)).select("+password");
 
   if (!user) {
     return next(new HandleERROR("شماره موبایل یا رمز عبور اشتباه است", 401));
@@ -93,7 +109,7 @@ export const loginWithPassword = catchAsync(async (req, res, next) => {
 });
 
 export const loginWithOtp = catchAsync(async (req, res, next) => {
-  const { phoneNumber, code, password } = req.body;
+  const { phoneNumber, code, password, fullName } = req.body;
   const cleanPhone = normalizePersianDigits(phoneNumber).trim();
   const cleanCode = normalizePersianDigits(code).trim();
 
@@ -103,17 +119,29 @@ export const loginWithOtp = catchAsync(async (req, res, next) => {
     return next(new HandleERROR("کد تایید اشتباه یا منقضی شده است", 400));
   }
 
-  let user = await User.findOne({ phoneNumber: cleanPhone });
+  let user = await User.findOne(phoneFilter(cleanPhone));
 
   if (!user) {
-    let userData = { phoneNumber: cleanPhone };
+    let canonical = cleanPhone;
+    if (canonical.startsWith("+98")) canonical = "0" + canonical.slice(3);
+    else if (canonical.startsWith("9") && canonical.length === 10) canonical = "0" + canonical;
+    let userData = { phoneNumber: canonical };
+    if (fullName) userData.fullName = fullName.trim();
     if (password) {
       userData.password = await bcryptjs.hash(password, 12);
     }
     user = await User.create(userData);
   } else {
+    let modified = false;
+    if (fullName && !user.fullName) {
+      user.fullName = fullName.trim();
+      modified = true;
+    }
     if (password) {
       user.password = await bcryptjs.hash(password, 12);
+      modified = true;
+    }
+    if (modified) {
       await user.save();
     }
   }
@@ -160,7 +188,7 @@ export const forgetPassword = catchAsync(async (req, res, next) => {
     return next(new HandleERROR("کد تایید اشتباه است", 400));
   }
 
-  const user = await User.findOne({ phoneNumber: cleanPhone });
+  const user = await User.findOne(phoneFilter(cleanPhone));
 
   if (!user) return next(new HandleERROR("کاربری با این شماره یافت نشد", 404));
 

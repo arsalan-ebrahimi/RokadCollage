@@ -1,0 +1,379 @@
+/* ============================================================
+   مودال لایسنس اسپات‌پلیر - طراحی سیستم نئوبروتالیسم کالج رکاد
+   ============================================================ */
+
+.spm-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(14, 21, 41, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  font-family: var(--font-iransans), "IRANSansX", system-ui, -apple-system, sans-serif;
+  direction: rtl;
+  animation: spmFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes spmFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.spm-card {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  background: #ffffff;
+  border: 2.5px solid var(--ink, #1F1E1D);
+  border-radius: 20px 0 20px 0;
+  box-shadow: 6px 6px 0 var(--ink, #1F1E1D);
+  padding: 2rem 2.2rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  animation: spmSlideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes spmSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.spm-close-btn {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 34px;
+  height: 34px;
+  background: #ffffff;
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--ink, #1F1E1D);
+}
+
+.spm-close-btn:hover {
+  background: #f5f5f4;
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink, #1F1E1D);
+}
+
+.spm-close-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0 0 0 var(--ink, #1F1E1D);
+}
+
+/* هدر مودال */
+.spm-head {
+  margin-bottom: 1.5rem;
+  padding-left: 2.5rem;
+}
+
+.spm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--college-light, #FFF4E5);
+  border: 1.5px solid var(--ink, #1F1E1D);
+  border-radius: 6px 0 6px 0;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 850;
+  color: var(--college-darker, #B45309);
+  margin-bottom: 0.6rem;
+}
+
+.spm-title {
+  font-size: 1.35rem;
+  font-weight: 950;
+  line-height: 1.35;
+  color: var(--ink, #1F1E1D);
+  margin-bottom: 0.35rem;
+}
+
+.spm-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-subtle, #62605B);
+  line-height: 1.5;
+}
+
+/* کادرهای داخلی */
+.spm-box {
+  background: var(--bg-cream, #FFFDF8);
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 14px 0 14px 0;
+  box-shadow: 3.5px 3.5px 0 var(--ink, #1F1E1D);
+  padding: 1.15rem 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.spm-box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 12.5px;
+  font-weight: 850;
+  color: var(--ink, #1F1E1D);
+}
+
+.spm-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1.5px solid #059669;
+  border-radius: 999px;
+  padding: 2.5px 9px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+/* باکس لایسنس اسپات‌پلیر */
+.mc-spotplayer-box {
+  background: #FFFDF0;
+  border: 1.5px dashed var(--ink, #1F1E1D);
+  border-radius: 12px 0 12px 0;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  direction: rtl;
+}
+
+.mc-spotplayer-box-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 850;
+  color: var(--ink, #1F1E1D);
+  overflow: hidden;
+  min-width: 0;
+  flex: 1;
+}
+
+.mc-spotplayer-box-info span {
+  direction: ltr;
+  text-align: left;
+}
+
+.mc-copy-key-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 6px 0 6px 0;
+  border: 1.5px solid var(--ink, #1F1E1D);
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  font-size: 11.5px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.mc-copy-key-btn:hover {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink, #1F1E1D);
+}
+
+/* ردیف فیلد کلید و کپی (سازگاری قبلی) */
+.spm-key-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 8px 0 8px 0;
+  padding: 6px 10px;
+}
+
+.spm-key-input {
+  flex: 1;
+  font-family: monospace;
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--ink, #1F1E1D);
+  background: transparent;
+  border: none;
+  outline: none;
+  direction: ltr;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spm-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--ink, #1F1E1D);
+  color: #ffffff;
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 6px 0 6px 0;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--college, #F8A41D);
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.spm-copy-btn:hover {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+}
+
+/* گرید دانلود اپلیکیشن‌ها */
+.spm-apps-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 900;
+  color: var(--ink, #1F1E1D);
+  margin-bottom: 0.75rem;
+}
+
+.spm-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.spm-app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 8px 0 8px 0;
+  padding: 8px 6px;
+  font-size: 12px;
+  font-weight: 850;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  transition: all 0.15s ease;
+}
+
+.spm-app-btn:hover {
+  background: var(--college-light, #FFF4E5);
+  box-shadow: 1px 1px 0 var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+}
+
+/* دکمه‌های اکشن فوتر */
+.spm-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+
+.spm-btn-webplayer {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 10px 0 10px 0;
+  box-shadow: 3.5px 3.5px 0 var(--ink, #1F1E1D);
+  padding: 11px 18px;
+  font-size: 13.5px;
+  font-weight: 950;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.spm-btn-webplayer:hover {
+  background: #e69415;
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+}
+
+.spm-btn-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 10px 0 10px 0;
+  box-shadow: 2.5px 2.5px 0 var(--ink, #1F1E1D);
+  padding: 11px 22px;
+  font-size: 13.5px;
+  font-weight: 850;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.spm-btn-close:hover {
+  background: #f5f5f4;
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+}
+
+/* ریسپانسیو موبایل */
+@media (max-width: 640px) {
+  .spm-card {
+    padding: 1.5rem 1.25rem;
+    border-radius: 18px 0 18px 0;
+  }
+
+  .spm-head {
+    padding-left: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .spm-title {
+    font-size: 1.2rem;
+  }
+
+  .spm-box {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .spm-apps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .spm-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .spm-btn-webplayer,
+  .spm-btn-close {
+    width: 100%;
+  }
+}

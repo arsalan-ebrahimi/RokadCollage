@@ -214,14 +214,40 @@ export const getOneEnrollment = catchAsync(async (req, res, next) => {
  * Includes spotplayer.key and buildDownloadUrl for the user's own courses.
  */
 export const getMyEnrollments = catchAsync(async (req, res, next) => {
-  const enrollments = await Enrollment.find({ user: req.userId })
+  const enrollments = await Enrollment.find({
+    user: req.userId,
+    "spotplayer.status": { $ne: "failed" },
+  })
     .select("+spotplayer.key")
     .sort({ createdAt: -1 })
-    .populate("course", "title type category price duration img sprints location spotplayerCourseId")
+    .populate({
+      path: "course",
+      select: "title type category price duration img sprints location spotplayerCourseId slug teachers",
+      populate: {
+        path: "teachers",
+        select: "name title avatar role",
+      },
+    })
     .populate("session", "code scheduleDays scheduleHours capacity")
+    .populate("transactionId", "status")
     .lean();
 
-  const enriched = enrollments.map((enr) => {
+  const filtered = enrollments.filter((enr) => {
+    // Exclude if transaction explicitly failed
+    if (enr.transactionId && enr.transactionId.status === "failed") {
+      return false;
+    }
+    // Only courses with an active license should appear in my-courses
+    const hasActiveLicense = Boolean(
+      enr.spotplayer?.key || (enr.spotplayer?.licenseId && enr.spotplayer?.status === "issued")
+    );
+    if (!hasActiveLicense || enr.spotplayer?.status === "failed") {
+      return false;
+    }
+    return true;
+  });
+
+  const enriched = filtered.map((enr) => {
     if (enr.spotplayer?.url) {
       enr.spotplayer.downloadUrl = buildDownloadUrl(enr.spotplayer.url);
     }
@@ -246,7 +272,7 @@ export const checkEnrollmentStatus = catchAsync(async (req, res, next) => {
     course: courseId,
   })
     .select("+spotplayer.key")
-    .populate("course", "title type category price img duration spotplayerCourseId")
+    .populate("course", "title type category price img duration spotplayerCourseId slug")
     .populate("session", "code scheduleDays scheduleHours")
     .lean();
 

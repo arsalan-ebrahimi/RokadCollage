@@ -1,0 +1,246 @@
+/* ============================================================
+   کالج رکاد: داده‌های صفحهٔ دوره‌ها
+   منبع: پک دیزاین project (8) / shared/courses-data.js
+   ============================================================ */
+
+export const FA = "۰۱۲۳۴۵۶۷۸۹";
+export const toFa = (n) => String(n).replace(/\d/g, (d) => FA[d]);
+export const formatPrice = (n) => toFa(n.toLocaleString("en-US")) + " تومان";
+
+export const courses = [
+  {
+    id: 1, title: "طراحی رابط کاربری با فیگما",
+    department: "design", departmentFa: "طراحی و UX",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "beginner", levelFa: "مقدماتی",
+    duration: "۴۲ ساعت", sessions: 24, students: 1240, rating: 4.9,
+    price: 2400000, discountPrice: 1800000, hasCertificate: true,
+    startDate: "۱۵ مهر", instructor: "نیلوفر رستمی",
+    tag: "پرفروش", tagColor: "college",
+    color: "college",
+  },
+  {
+    id: 2, title: "برنامه‌نویسی وب با React",
+    department: "coding", departmentFa: "برنامه‌نویسی",
+    mode: "in-person", modeFa: "حضوری",
+    level: "intermediate", levelFa: "متوسط",
+    duration: "۶۰ ساعت", sessions: 30, students: 890, rating: 4.8,
+    price: 3800000, discountPrice: 3200000, hasCertificate: true,
+    startDate: "۲۰ مهر", instructor: "مسعود احمدی",
+    tag: "جدید", tagColor: "sec",
+    color: "sec",
+  },
+  {
+    id: 3, title: "دیجیتال مارکتینگ کاربردی",
+    department: "marketing", departmentFa: "دیجیتال مارکتینگ",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "beginner", levelFa: "مقدماتی",
+    duration: "۳۶ ساعت", sessions: 18, students: 2100, rating: 4.7,
+    price: 2200000, discountPrice: null, hasCertificate: true,
+    startDate: "همین حالا", instructor: "سارا کاظمی",
+    tag: "محبوب", tagColor: "girl",
+    color: "girl",
+  },
+  {
+    id: 4, title: "طراحی تجربه کاربری (UX)",
+    department: "design", departmentFa: "طراحی و UX",
+    mode: "in-person", modeFa: "حضوری",
+    level: "advanced", levelFa: "پیشرفته",
+    duration: "۸۰ ساعت", sessions: 32, students: 320, rating: 5.0,
+    price: 6500000, discountPrice: 5500000, hasCertificate: true,
+    startDate: "۱ آبان", instructor: "امیر حسینی",
+    tag: "ویژه", tagColor: "college",
+    color: "college",
+  },
+  {
+    id: 5, title: "Python برای هوش مصنوعی",
+    department: "coding", departmentFa: "برنامه‌نویسی",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "intermediate", levelFa: "متوسط",
+    duration: "۵۴ ساعت", sessions: 28, students: 1560, rating: 4.9,
+    price: 3200000, discountPrice: 2600000, hasCertificate: true,
+    startDate: "همین حالا", instructor: "دکتر رضایی",
+    tag: "پرفروش", tagColor: "college",
+    color: "college",
+  },
+  {
+    id: 6, title: "مدیریت شبکه‌های اجتماعی",
+    department: "marketing", departmentFa: "دیجیتال مارکتینگ",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "beginner", levelFa: "مقدماتی",
+    duration: "۲۴ ساعت", sessions: 12, students: 3200, rating: 4.6,
+    price: 1200000, discountPrice: null, hasCertificate: false,
+    startDate: "همین حالا", instructor: "زهرا موسوی",
+    tag: "رایگان تا ۲۰٪", tagColor: "girl",
+    color: "girl",
+  },
+  {
+    id: 7, title: "طراحی گرافیک با Adobe Illustrator",
+    department: "design", departmentFa: "طراحی و UX",
+    mode: "in-person", modeFa: "حضوری",
+    level: "beginner", levelFa: "مقدماتی",
+    duration: "۴۸ ساعت", sessions: 24, students: 780, rating: 4.7,
+    price: 2800000, discountPrice: null, hasCertificate: true,
+    startDate: "۲۵ مهر", instructor: "پویا کریمی",
+    tag: "جدید", tagColor: "sec",
+    color: "sec",
+  },
+  {
+    id: 8, title: "توسعه اپلیکیشن موبایل با Flutter",
+    department: "coding", departmentFa: "برنامه‌نویسی",
+    mode: "in-person", modeFa: "حضوری",
+    level: "advanced", levelFa: "پیشرفته",
+    duration: "۷۲ ساعت", sessions: 36, students: 420, rating: 4.9,
+    price: 5200000, discountPrice: 4400000, hasCertificate: true,
+    startDate: "۱۰ آبان", instructor: "علی صالحی",
+    tag: "ویژه", tagColor: "college",
+    color: "college",
+  },
+  {
+    id: 9, title: "کارگاه عکاسی موبایل",
+    department: "photography", departmentFa: "عکاسی",
+    mode: "in-person", modeFa: "حضوری",
+    level: "beginner", levelFa: "مقدماتی",
+    duration: "۱۸ ساعت", sessions: 9, students: 560, rating: 4.8,
+    price: 1500000, discountPrice: null, hasCertificate: false,
+    startDate: "۵ آبان", instructor: "نازنین فرهادی",
+    tag: null, tagColor: null,
+    color: "sec",
+  },
+  {
+    id: 10, title: "بازاریابی محتوایی و SEO",
+    department: "marketing", departmentFa: "دیجیتال مارکتینگ",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "intermediate", levelFa: "متوسط",
+    duration: "۴۰ ساعت", sessions: 20, students: 1180, rating: 4.8,
+    price: 2900000, discountPrice: 2300000, hasCertificate: true,
+    startDate: "همین حالا", instructor: "محمد امیری",
+    tag: "پرفروش", tagColor: "college",
+    color: "college",
+  },
+  {
+    id: 11, title: "طراحی موشن گرافیک با After Effects",
+    department: "design", departmentFa: "طراحی و UX",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "intermediate", levelFa: "متوسط",
+    duration: "۵۰ ساعت", sessions: 25, students: 640, rating: 4.7,
+    price: 3400000, discountPrice: 2800000, hasCertificate: true,
+    startDate: "۱۲ آبان", instructor: "کیانا نجفی",
+    tag: "جدید", tagColor: "sec",
+    color: "girl",
+  },
+  {
+    id: 12, title: "بلاک‌چین و کریپتوکارنسی",
+    department: "coding", departmentFa: "برنامه‌نویسی",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "advanced", levelFa: "پیشرفته",
+    duration: "۴۵ ساعت", sessions: 22, students: 280, rating: 4.9,
+    price: 4800000, discountPrice: null, hasCertificate: true,
+    startDate: "۱۸ آبان", instructor: "دکتر مهدوی",
+    tag: "پیشرفته", tagColor: "sec",
+    color: "sec",
+  },
+  {
+    id: 13, title: "روانشناسی فروش و مذاکره",
+    department: "business", departmentFa: "کسب‌وکار",
+    mode: "in-person", modeFa: "حضوری",
+    level: "intermediate", levelFa: "متوسط",
+    duration: "۳۰ ساعت", sessions: 15, students: 890, rating: 4.8,
+    price: 2600000, discountPrice: 2000000, hasCertificate: true,
+    startDate: "۲۰ مهر", instructor: "دکتر ملکی",
+    tag: "محبوب", tagColor: "girl",
+    color: "girl",
+  },
+  {
+    id: 14, title: "طراحی سه‌بعدی با Blender",
+    department: "design", departmentFa: "طراحی و UX",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "advanced", levelFa: "پیشرفته",
+    duration: "۶۵ ساعت", sessions: 30, students: 380, rating: 4.9,
+    price: 4200000, discountPrice: 3500000, hasCertificate: true,
+    startDate: "همین حالا", instructor: "آرش بهرامی",
+    tag: "ویژه", tagColor: "college",
+    color: "college",
+  },
+  {
+    id: 15, title: "کارآفرینی و راه‌اندازی استارتاپ",
+    department: "business", departmentFa: "کسب‌وکار",
+    mode: "in-person", modeFa: "حضوری",
+    level: "intermediate", levelFa: "متوسط",
+    duration: "۴۵ ساعت", sessions: 20, students: 520, rating: 4.9,
+    price: 3800000, discountPrice: 3200000, hasCertificate: true,
+    startDate: "۱ آبان", instructor: "رضا کارگر",
+    tag: "ویژه", tagColor: "college",
+    color: "college",
+  },
+  {
+    id: 16, title: "توسعه بازی با Unity",
+    department: "coding", departmentFa: "برنامه‌نویسی",
+    mode: "in-person", modeFa: "حضوری",
+    level: "intermediate", levelFa: "متوسط",
+    duration: "۵۸ ساعت", sessions: 28, students: 440, rating: 4.7,
+    price: 4100000, discountPrice: null, hasCertificate: true,
+    startDate: "۱۵ آبان", instructor: "حمید تهرانی",
+    tag: "جدید", tagColor: "sec",
+    color: "sec",
+  },
+  {
+    id: 17, title: "تولید محتوای ویدیویی",
+    department: "marketing", departmentFa: "دیجیتال مارکتینگ",
+    mode: "online", modeFa: "غیرحضوری",
+    level: "beginner", levelFa: "مقدماتی",
+    duration: "۲۸ ساعت", sessions: 14, students: 1450, rating: 4.6,
+    price: 1800000, discountPrice: 1400000, hasCertificate: false,
+    startDate: "همین حالا", instructor: "فاطمه سلطانی",
+    tag: "محبوب", tagColor: "girl",
+    color: "girl",
+  },
+  {
+    id: 18, title: "طراحی تعامل و پروتوتایپ",
+    department: "design", departmentFa: "طراحی و UX",
+    mode: "in-person", modeFa: "حضوری",
+    level: "intermediate", levelFa: "متوسط",
+    duration: "۴۰ ساعت", sessions: 20, students: 380, rating: 4.9,
+    price: 3400000, discountPrice: 2800000, hasCertificate: true,
+    startDate: "۲۵ مهر", instructor: "الهام قاسمی",
+    tag: null, tagColor: null,
+    color: "college",
+  },
+];
+
+/* کاور کارت دوره: همرنگ پالت کارت */
+export const COURSE_COVERS = {
+  college: "/assets/StatCard/yellow.png",
+  sec: "/assets/StatCard/blue.png",
+  girl: "/assets/StatCard/pink.png",
+};
+courses.forEach((c) => { c.image = COURSE_COVERS[c.color] || COURSE_COVERS.college; });
+
+export const departments = [
+  { id: "design", name: "طراحی و UX" },
+  { id: "coding", name: "برنامه‌نویسی" },
+  { id: "marketing", name: "دیجیتال مارکتینگ" },
+  { id: "business", name: "کسب‌وکار" },
+  { id: "photography", name: "عکاسی" },
+];
+
+export const LEVELS = [
+  { id: "beginner", label: "مقدماتی" },
+  { id: "intermediate", label: "متوسط" },
+  { id: "advanced", label: "پیشرفته" },
+];
+
+export const MODES = [
+  { id: "all", label: "همه" },
+  { id: "in-person", label: "حضوری" },
+  { id: "online", label: "غیر حضوری" },
+];
+
+export const SORTS = [
+  { id: "popular", label: "محبوب‌ترین" },
+  { id: "newest", label: "جدیدترین" },
+  { id: "cheapest", label: "ارزان‌ترین" },
+  { id: "rating", label: "بالاترین امتیاز" },
+];
+
+export const PRICE_MAX = 7000000;

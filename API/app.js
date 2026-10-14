@@ -24,6 +24,7 @@ import enrollmentRouter from "./Modules/Enrollment/Enrollment.js";
 import commentRouter from "./Modules/Comment/Comment.js";
 import blogRouter from "./Modules/Blog/Blog.js";
 import seoRouter from "./Modules/Seo/Seo.js";
+import paymentRouter from "./Modules/Payment/PaymentRoutes.js";
 import courseCommentRouter from "./Modules/CourseComment/CourseComment.js";
 import InPersonCourse from "./Modules/InPersonCourse/InPersonCourseMd.js";
 import VirtualCourse from "./Modules/VirtualCourse/VirtualCourseMd.js";
@@ -46,9 +47,14 @@ app.use(
 
 app.use(morgan("dev"));
 
-const corsOptions = process.env.ALLOWED_ORIGINS
-  ? { origin: process.env.ALLOWED_ORIGINS.split(",").map((s) => s.trim()) }
-  : {};
+const corsOptions = {
+  origin: process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(",").map((s) => s.trim())
+    : ["http://localhost:3000", "http://localhost:5173"],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept", "X-Requested-With"],
+};
 app.use(cors(corsOptions));
 
 app.use(express.json({ limit: "2mb" }));
@@ -119,12 +125,13 @@ app.use(["/api/user", "/user"], userRouter);
 app.use(["/api/upload", "/upload"], uploadRouter);
 app.use(["/api/in-person-courses", "/in-person-courses"], inPersonCourseRouter);
 app.use(["/api/virtual-courses", "/virtual-courses"], virtualCourseRouter);
-app.use(["/api/teacher", "/teacher"], teacherRouter);
+app.use(["/api/teacher", "/teacher", "/api/teachers", "/teachers"], teacherRouter);
 app.use(["/api/wallet", "/wallet"], walletRouter);
 app.use(["/api/enrollment", "/api/enrollments", "/enrollments", "/enrollment"], enrollmentRouter);
 app.use(["/api/comment", "/api/comments", "/comments", "/comment"], commentRouter);
 app.use(["/api/blog", "/api/blogs", "/blogs", "/blog"], blogRouter);
 app.use(["/api/seo", "/seo"], seoRouter);
+app.use(["/api/payment", "/payment"], paymentRouter);
 
 // Virtual Course Comments & Discussions
 app.use(["/api/course-comments", "/course-comments"], courseCommentRouter);

@@ -18,16 +18,9 @@ export const getAll = catchAsync(async (req, res, next) => {
 });
 
 export const getOne = catchAsync(async (req, res, next) => {
-  const features = new ApiFeatures(User, req.query, req.role)
-    .addManualFilters(
-      req.role === "user" ? { _id: req.userId } : { _id: req.params.id }
-    )
-    .limitFields()
-    .populate();
+  const targetId = (req.role === "user" ? req.userId : (req.params.id || req.userId));
 
-  const result = await features.execute();
-
-  const doc = Array.isArray(result) ? result[0] : result?.data ? result.data[0] : result;
+  const doc = await User.findById(targetId).select("-password").lean();
 
   if (!doc) {
     return next(new HandleERROR("کاربر یافت نشد", 404));

@@ -9,7 +9,10 @@ import User from "../User/UserMd.js";
 const getZarinpalConfig = () => {
   const isSandbox = String(process.env.ZARINPAL_SANDBOX || "true").toLowerCase() === "true";
   const merchantId = process.env.ZARINPAL_MERCHANT_ID || "00000000-0000-0000-0000-000000000000";
-  const callbackUrl = process.env.ZARINPAL_CALLBACK_URL || "http://localhost:5173/wallet/verify";
+  let callbackUrl = process.env.ZARINPAL_CALLBACK_URL || "http://localhost:3000/payment/callback";
+  if (!callbackUrl || callbackUrl.includes("5173") || callbackUrl.includes("/wallet/verify")) {
+    callbackUrl = "http://localhost:3000/payment/callback";
+  }
 
   const requestUrl =
     process.env.ZARINPAL_REQUEST_URL ||

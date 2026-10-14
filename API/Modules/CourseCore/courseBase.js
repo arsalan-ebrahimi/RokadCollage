@@ -4,6 +4,11 @@ import mongoose from "mongoose";
  * Shared fields definition for both InPersonCourse and VirtualCourse models.
  */
 export const commonCourseFields = {
+    slug: {
+        type: String,
+        trim: true,
+        index: true,
+    },
     category: {
         type: String,
         required: [true, "انتخاب دسته‌بندی دوره الزامی است"],
@@ -104,6 +109,27 @@ export const commonCourseFields = {
                 type: String,
                 required: [true, "توضیحات اسپرینت الزامی است"],
                 trim: true,
+            },
+        },
+    ],
+    resources: [
+        {
+            title: {
+                type: String,
+                required: [true, "عنوان منبع الزامی است"],
+                trim: true,
+            },
+            type: {
+                type: String,
+                default: "ZIP",
+            },
+            size: {
+                type: String,
+                default: "",
+            },
+            url: {
+                type: String,
+                default: "",
             },
         },
     ],

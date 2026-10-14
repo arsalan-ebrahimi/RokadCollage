@@ -1,0 +1,118 @@
+export const assignments = [
+  {
+    id: 1,
+    title: "پیاده‌سازی گراف وزن‌دار و Dijkstra",
+    course: "ساختمان داده و الگوریتم",
+    due: "مهلت: امروز ۲۳:۵۹",
+    no: 4,
+    status: "late",
+  },
+  {
+    id: 2,
+    title: "آموزش مدل طبقه‌بندی روی دیتاست MNIST",
+    course: "مبانی هوش مصنوعی",
+    due: "مهلت: ۱۸ شهریور",
+    no: 2,
+    status: "open",
+  },
+  {
+    id: 3,
+    title: "تحلیل حافظه و بهینه‌سازی کش",
+    course: "معماری کامپیوتر",
+    due: "تحویل ۱۶ شهریور",
+    no: 5,
+    status: "done",
+  },
+  {
+    id: 4,
+    title: "مدل‌سازی توزیع نرمال با پایتون",
+    course: "آمار و احتمال کاربردی",
+    due: "تحویل ۱۲ شهریور",
+    no: 1,
+    status: "graded",
+    grade: "۱۹",
+  },
+];
+
+export const myCourses = [
+  {
+    id: 1,
+    title: "ساختمان داده و الگوریتم",
+    teacher: "دکتر رستمی",
+    sessions: "۱۲ جلسه · ۲۴ ساعت",
+    progress: 62,
+    chapter: "فصل ۴ از ۷",
+    next: "جلسهٔ بعد: الگوریتم‌های گراف (پنج‌شنبه ۱۰:۳۰)",
+    status: "active",
+    pattern: "/assets/StatCard/blue.png",
+  },
+  {
+    id: 2,
+    title: "مبانی هوش مصنوعی",
+    teacher: "دکتر عزیزی",
+    sessions: "۱۶ جلسه · ۳۲ ساعت",
+    progress: 28,
+    chapter: "فصل ۲ از ۸",
+    next: "تکلیف باز: تمرین ۲ (مهلت ۱۸ شهریور)",
+    status: "active",
+    pattern: "/assets/StatCard/green.png",
+  },
+  {
+    id: 3,
+    title: "معماری کامپیوتر",
+    teacher: "استاد احمدی",
+    sessions: "۱۲ جلسه · ۲۰ ساعت",
+    progress: 100,
+    chapter: "فصل ۶ از ۶",
+    next: "همهٔ درس‌ها کامل شد؛ آمادهٔ امتحان نهایی",
+    status: "done",
+    pattern: "/assets/StatCard/pink.png",
+  },
+  {
+    id: 4,
+    title: "آمار و احتمال کاربردی",
+    teacher: "دکتر رضایی",
+    sessions: "۱۰ جلسه · ۱۸ ساعت",
+    progress: 12,
+    chapter: "فصل ۱ از ۵",
+    next: "جلسهٔ بعد: توزیع‌های گسسته (شنبه ۱۴:۰۰)",
+    status: "new",
+    pattern: "/assets/StatCard/yellow.png",
+  },
+];
+
+export const courseLessons = [
+  { n: 1, title: "مقدمه‌ای بر ساختمان داده", time: "۲۴ دقیقه", done: true },
+  { n: 2, title: "آرایه و لیست پیوندی", time: "۳۱ دقیقه", done: true },
+  { n: 3, title: "پشته و صف", time: "۲۸ دقیقه", done: true },
+  { n: 4, title: "درخت و پیمایش", time: "۴۲ دقیقه", now: true },
+  { n: 5, title: "گراف وزن‌دار و Dijkstra", time: "۳۸ دقیقه", locked: true },
+  { n: 6, title: "جدول درهم‌سازی", time: "۳۵ دقیقه", locked: true },
+];
+
+export const certificates = [
+  {
+    id: 1,
+    title: "مبانی برنامه‌نویسی پایتون",
+    date: "اردیبهشت ۱۴۰۴",
+    hours: "۴۰ ساعت",
+    grade: "۱۹.۵",
+    serial: "RK-PY-1404-0812",
+  },
+  {
+    id: 2,
+    title: "طراحی وب واکنش‌گرا",
+    date: "تیر ۱۴۰۴",
+    hours: "۳۵ ساعت",
+    grade: "۱۹",
+    serial: "RK-WD-1404-1447",
+  },
+  {
+    id: 3,
+    title: "ورود به دنیای داده",
+    date: "شهریور ۱۴۰۴",
+    hours: "۳۰ ساعت",
+    grade: "۱۸.۷۵",
+    serial: "RK-DS-1404-2133",
+  },
+];

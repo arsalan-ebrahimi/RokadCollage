@@ -38,6 +38,7 @@ export const loginWithOtpValidator = Joi.object({
   password: Joi.string().min(6).optional().messages({
     "string.min": "رمز عبور باید حداقل ۶ کاراکتر باشد",
   }),
+  fullName: Joi.string().trim().max(100).optional(),
 });
 
 export const resendCodeValidator = Joi.object({

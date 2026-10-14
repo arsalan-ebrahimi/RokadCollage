@@ -11,6 +11,16 @@ userRouter.route("/")
   .get(IsLogin, IsAdmin, getAll)
   .post(IsLogin, IsAdmin, validateRequest(createUserValidator), create);
 
+userRouter.route("/me")
+  .get(IsLogin, (req, res, next) => {
+    req.params.id = req.userId;
+    return getOne(req, res, next);
+  })
+  .patch(IsLogin, validateRequest(updateUserValidator), (req, res, next) => {
+    req.params.id = req.userId;
+    return update(req, res, next);
+  });
+
 userRouter.route("/:id")
   .get(IsLogin, validateParams(objectIdParamValidator), getOne)
   .patch(IsLogin, validateParams(objectIdParamValidator), validateRequest(updateUserValidator), update)

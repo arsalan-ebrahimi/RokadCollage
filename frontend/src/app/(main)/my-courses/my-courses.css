@@ -1,0 +1,1050 @@
+/* ========================================================
+   MY COURSES DASHBOARD - NEO-BRUTALIST STYLING
+   ======================================================== */
+
+.mc-page {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-cream, #FFFDF8);
+  color: var(--ink, #1F1E1D);
+  direction: rtl;
+  --dp: var(--college, #F8A41D);
+  --dp-light: var(--college-light, #FFF4E5);
+  --dp-dark: var(--college-darker, #B45309);
+  --dp-text: var(--ink, #1F1E1D);
+}
+
+/* ========================================================
+   HERO SECTION (مطابق الگوی تک‌صفحه دپارتمان‌ها)
+   ======================================================== */
+.mc-hero {
+  position: relative;
+  background: linear-gradient(180deg, #FFF4E5 0%, #FFFDF8 100%);
+  border-bottom: 2.5px solid var(--ink, #1F1E1D);
+  overflow: hidden;
+}
+
+.mc-hero-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
+
+.mc-hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 44px 20px 52px;
+}
+
+.mc-crumb {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink-subtle, #62605B);
+  margin-bottom: 18px;
+}
+
+.mc-crumb a {
+  color: var(--ink-subtle, #62605B);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mc-crumb a:hover {
+  color: var(--ink, #1F1E1D);
+}
+
+.mc-crumb .sep {
+  color: var(--college, #F8A41D);
+  font-weight: 900;
+}
+
+.mc-crumb .cur {
+  color: var(--ink, #1F1E1D);
+  font-weight: 900;
+}
+
+.mc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--ink, #1F1E1D);
+  box-shadow: 3px 3px 0 var(--college, #F8A41D);
+  transform: rotate(-1deg);
+  width: fit-content;
+  margin-bottom: 14px;
+}
+
+.mc-badge .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10B981;
+  border: 2px solid var(--ink, #1F1E1D);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+}
+
+.mc-hero-title {
+  font-size: clamp(26px, 4.5vw, 44px);
+  font-weight: 950;
+  line-height: 1.35;
+  color: var(--ink, #1F1E1D);
+  margin: 12px 0 16px;
+  letter-spacing: -0.01em;
+  max-width: 780px;
+}
+
+.mc-hero-accent {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  color: var(--ink, #1F1E1D);
+  padding: 0 6px;
+}
+
+.mc-hero-accent::after {
+  content: "";
+  position: absolute;
+  right: -0.1em;
+  left: -0.1em;
+  top: 55%;
+  height: 0.44em;
+  margin-top: -0.22em;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--college, #F8A41D);
+  border-radius: 4px 9px 5px 10px;
+  transform: rotate(-2deg);
+}
+
+/* ========================================================
+   HERO STATS (.dp-hero-stats & .dp-hstat)
+   ======================================================== */
+.dp-hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 32px;
+  background: #ffffff;
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 20px 0 20px 0;
+  box-shadow: 5px 5px 0 var(--dp, #F8A41D);
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.dp-hstat {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 14px 24px;
+  min-width: 128px;
+}
+
+.dp-hstat + .dp-hstat {
+  border-inline-start: 2px dashed rgba(31, 30, 29, 0.25);
+}
+
+.dp-hstat b {
+  font-weight: 950;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--dp-dark, #B45309);
+}
+
+.dp-hstat span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-subtle, #62605B);
+  white-space: nowrap;
+}
+
+/* ========================================================
+   MAIN CONTENT & FILTER BAR
+   ======================================================== */
+.mc-content-wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 38px 20px 72px;
+}
+
+
+
+/* ========================================================
+   COURSE CARDS GRID (3 کارتی در هر ردیف)
+   ======================================================== */
+.mc-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+
+@media (min-width: 640px) {
+  .mc-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .mc-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ========================================================
+   CARD DESIGN (مطابق ch-flag-visual و کارت‌های پیشنهادی)
+   ======================================================== */
+.mc-card {
+  position: relative;
+  background: #ffffff;
+  border: 2.5px solid var(--ink, #1F1E1D);
+  border-radius: 22px 0 22px 0;
+  box-shadow: 5px 5px 0 var(--ink, #1F1E1D);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mc-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 8px 8px 0 var(--ink, #1F1E1D);
+}
+
+/* بخش بصری بالای کارت */
+.mc-card-visual {
+  position: relative;
+  height: 185px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2.5px solid var(--ink, #1F1E1D);
+  overflow: hidden;
+}
+
+.mc-card-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.24;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.mc-dept-chip {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  font-size: 11.5px;
+  font-weight: 850;
+  padding: 4px 11px;
+  border: 1.5px solid var(--ink, #1F1E1D);
+  border-radius: 8px 0 8px 0;
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+}
+
+.mc-icon-wrap {
+  position: relative;
+  z-index: 1;
+  width: 82px;
+  height: 82px;
+  border-radius: 18px 0 18px 0;
+  border: 2.5px solid var(--ink, #1F1E1D);
+  background: #ffffff;
+  display: grid;
+  place-items: center;
+  box-shadow: 4px 4px 0 var(--ink, #1F1E1D);
+  margin-bottom: 12px;
+  transition: transform 0.2s ease;
+}
+
+.mc-card:hover .mc-icon-wrap {
+  transform: scale(1.05);
+}
+
+.mc-badge-pill {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 1.5px solid var(--ink, #1F1E1D);
+  border-radius: 999px;
+  padding: 3px 12px;
+  font-size: 11.5px;
+  font-weight: 850;
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+}
+
+.mc-badge-inperson {
+  background: #FEF3C7;
+  color: #92400E;
+}
+
+.mc-badge-virtual {
+  background: #E0F2FE;
+  color: #0369A1;
+}
+
+.mc-badge-completed {
+  background: #D1FAE5;
+  color: #065F46;
+}
+
+/* تم رنگی بخش ویژوال: رنگ اختصاصی کالج رکاد (زرد برند و پترن زرد کسب و کار) */
+.mc-theme-college,
+.mc-theme-it,
+.mc-theme-business,
+.mc-theme-languages,
+.mc-theme-default {
+  background: linear-gradient(135deg, #FFF4E5 0%, #FDE68A 100%);
+}
+
+/* محتوای متنی و مشخصات کارت */
+.mc-card-body {
+  padding: 22px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.mc-card-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-subtle, #62605B);
+}
+
+.mc-card-title {
+  font-size: 17.5px;
+  font-weight: 950;
+  line-height: 1.45;
+  color: var(--ink, #1F1E1D);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 50px;
+}
+
+.mc-card-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mc-card-title a:hover {
+  color: #D97706;
+}
+
+.mc-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.mc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #F5F5F4;
+  border: 1.5px solid var(--ink, #1F1E1D);
+  border-radius: 8px 0 8px 0;
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ink, #1F1E1D);
+}
+
+/* باکس لایسنس اسپات‌پلیر داخل کارت */
+.mc-spotplayer-box {
+  background: #FFFDF0;
+  border: 1.5px dashed var(--ink, #1F1E1D);
+  border-radius: 12px 0 12px 0;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.mc-spotplayer-box-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  font-weight: 850;
+  color: var(--ink, #1F1E1D);
+  overflow: hidden;
+}
+
+.mc-copy-key-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 9px;
+  border-radius: 6px 0 6px 0;
+  border: 1.5px solid var(--ink, #1F1E1D);
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+
+.mc-copy-key-btn:hover {
+  background: var(--college, #F8A41D);
+}
+
+/* اکشن‌های فوتر کارت */
+.mc-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 2px solid var(--ink, #1F1E1D);
+}
+
+.mc-btn-primary {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 10px 0 10px 0;
+  border: 2px solid var(--ink, #1F1E1D);
+  background: var(--ink, #1F1E1D);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 900;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--college, #F8A41D);
+  transition: all 0.15s ease;
+}
+
+.mc-btn-primary:hover {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+}
+
+.mc-btn-license {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px 14px;
+  border-radius: 10px 0 10px 0;
+  border: 2px solid var(--ink, #1F1E1D);
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 2.5px 2.5px 0 var(--ink, #1F1E1D);
+  transition: all 0.15s ease;
+}
+
+.mc-btn-license:hover {
+  background: #FEF3C7;
+  transform: translate(1px, 1px);
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+}
+
+/* حالت خالی */
+.mc-empty-box {
+  background: #ffffff;
+  border: 2.5px solid var(--ink, #1F1E1D);
+  border-radius: 22px 0 22px 0;
+  box-shadow: 5px 5px 0 var(--ink, #1F1E1D);
+  padding: 56px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+/* ========================================================
+   SEARCH BOX IN TOOLBAR (جستجوی زنده دوره‌ها)
+   ======================================================== */
+.mc-search-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 10px 0 10px 0;
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  padding: 0 10px 0 6px;
+  height: 38px;
+  min-width: 220px;
+  transition: all 0.18s ease;
+}
+
+.mc-search-box:focus-within {
+  border-color: var(--ink, #1F1E1D);
+  box-shadow: 3px 3px 0 var(--college, #F8A41D);
+}
+
+.mc-search-icon {
+  color: var(--ink-subtle, #62605B);
+  flex-shrink: 0;
+  margin-inline-end: 6px;
+}
+
+.mc-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink, #1F1E1D);
+  width: 100%;
+}
+
+.mc-search-input::placeholder {
+  color: #8c8985;
+  font-weight: 600;
+}
+
+.mc-search-clear {
+  background: none;
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  color: var(--ink-subtle, #62605B);
+  cursor: pointer;
+  padding: 0 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease;
+}
+
+.mc-search-clear:hover {
+  color: var(--ink, #1F1E1D);
+}
+
+/* ========================================================
+   RESPONSIVE DESIGN (موبایل و تبلت)
+   ======================================================== */
+@media (max-width: 768px) {
+  .mc-hero-inner {
+    padding: 28px 16px 36px;
+  }
+
+  .mc-crumb {
+    font-size: 12.5px;
+    margin-bottom: 14px;
+  }
+
+  .mc-badge {
+    font-size: 12px;
+    padding: 5px 12px;
+    margin-bottom: 10px;
+  }
+
+  .mc-hero-title {
+    font-size: clamp(23px, 6.5vw, 32px);
+    margin: 10px 0 14px;
+    line-height: 1.35;
+  }
+
+  /* نوار آمار در موبایل: ۲ در ۲ منظم با بوردر خط‌چین */
+  .dp-hero-stats {
+    width: 100%;
+    border-radius: 16px 0 16px 0;
+    margin-top: 24px;
+    box-shadow: 4px 4px 0 var(--dp, #F8A41D);
+  }
+
+  .dp-hstat {
+    flex: 1 1 calc(50% - 1px);
+    padding: 12px 14px;
+    min-width: 0;
+  }
+
+  .dp-hstat:nth-child(2n+1) {
+    border-inline-start: none;
+  }
+
+  .dp-hstat:nth-child(2),
+  .dp-hstat:nth-child(4) {
+    border-inline-start: 2px dashed rgba(31, 30, 29, 0.25);
+  }
+
+  .dp-hstat:nth-child(n+3) {
+    border-top: 2px dashed rgba(31, 30, 29, 0.25);
+  }
+
+  .dp-hstat b {
+    font-size: 20px;
+  }
+
+  .dp-hstat span {
+    font-size: 11.5px;
+  }
+
+  .mc-content-wrap {
+    padding: 24px 16px 64px;
+  }
+
+  /* کارت‌ها در موبایل */
+  .mc-card {
+    border-radius: 18px 0 18px 0;
+    box-shadow: 4px 4px 0 var(--ink, #1F1E1D);
+  }
+
+  .mc-card-visual {
+    height: 165px;
+  }
+
+  .mc-icon-wrap {
+    width: 72px;
+    height: 72px;
+    border-radius: 16px 0 16px 0;
+    margin-bottom: 10px;
+  }
+
+  .mc-card-body {
+    padding: 18px 16px 16px;
+    gap: 14px;
+  }
+
+  .mc-card-title {
+    font-size: 16px;
+    min-height: auto;
+  }
+
+  .mc-card-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .mc-btn-primary,
+  .mc-btn-license {
+    padding: 9px 12px;
+    font-size: 12.5px;
+  }
+
+  /* دکمه فیلتر در سایز موبایل: فقط آیکون */
+  .dp-filter-btn {
+    flex: 0 0 38px !important;
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    position: relative !important;
+  }
+  .dp-filter-btn > span:not(.dp-filter-count) {
+    display: none !important;
+  }
+  .dp-filter-btn .dp-filter-count {
+    position: absolute !important;
+    top: -5px !important;
+    right: -5px !important;
+    min-width: 17px !important;
+    height: 17px !important;
+    font-size: 10px !important;
+  }
+  .dp-tools {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+  .mc-search-box {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    width: auto !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mc-hero-inner {
+    padding: 24px 14px 30px;
+  }
+
+  .mc-content-wrap {
+    padding: 20px 14px 50px;
+  }
+
+  .dp-hstat {
+    padding: 10px 10px;
+  }
+
+  .dp-hstat b {
+    font-size: 18px;
+  }
+
+  .dp-hstat span {
+    font-size: 11px;
+  }
+
+  /* دو دکمه ورود به دوره و لایسنس در کنار هم */
+  .mc-card-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .mc-btn-primary {
+    flex: 1 1 auto !important;
+    width: auto !important;
+    padding: 8px 10px !important;
+    font-size: 12px !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+
+  .mc-btn-license {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* ========================================================
+   MODAL CLOSE BUTTONS HOVER ANIMATION (بدون روتیت، افکت فشردن کلید)
+   ======================================================== */
+.spm-close-btn,
+.dp-filter-close {
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.spm-close-btn:hover,
+.dp-filter-close:hover {
+  background: #f5f5f4 !important;
+  color: var(--ink, #1F1E1D) !important;
+  transform: translate(1px, 1px) !important;
+  box-shadow: 1px 1px 0 var(--ink, #1F1E1D) !important;
+}
+
+.spm-close-btn:active,
+.dp-filter-close:active {
+  transform: translate(2px, 2px) !important;
+  box-shadow: 0 0 0 var(--ink, #1F1E1D) !important;
+}
+
+/* ========================================================
+   STATUS TABS & SAVED COURSES SUPPORT
+   ======================================================== */
+.mc-status-tabs {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 12px 0 12px 0;
+  box-shadow: 2.5px 2.5px 0 var(--ink, #1F1E1D);
+  padding: 3px;
+  gap: 3px;
+}
+
+.mc-status-tab {
+  padding: 6px 14px;
+  border-radius: 8px 0 8px 0;
+  border: 1.5px solid transparent;
+  background: transparent;
+  color: var(--ink-subtle, #62605B);
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.mc-status-tab:hover {
+  color: var(--ink, #1F1E1D);
+}
+
+.mc-status-tab.active {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+  border-color: var(--ink, #1F1E1D);
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+}
+
+.mc-status-tab-count {
+  font-size: 11px;
+  background: rgba(41, 40, 39, 0.1);
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.mc-status-tab.active .mc-status-tab-count {
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+}
+
+.mc-badge-saved {
+  background: var(--college-light, #FFF4E5);
+  color: var(--college-darker, #B45309);
+  border-color: var(--ink, #1F1E1D);
+}
+
+.mc-card-save-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px 0 8px 0;
+  background: #ffffff;
+  border: 1.5px solid var(--ink, #1F1E1D);
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  color: var(--ink, #1F1E1D);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.mc-card-save-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink, #1F1E1D);
+}
+
+.mc-card-save-btn.is-saved {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+}
+
+.mc-card-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #FAFAF9;
+  border: 1.5px dashed var(--ink, #1F1E1D);
+  border-radius: 8px 0 8px 0;
+  padding: 8px 12px;
+  font-size: 12.5px;
+}
+
+.mc-price-label {
+  color: var(--ink-subtle, #62605B);
+  font-weight: 700;
+}
+
+.mc-price-val {
+  color: var(--ink, #1F1E1D);
+  font-weight: 900;
+  font-size: 13.5px;
+}
+
+.mc-btn-enroll {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+  box-shadow: 2.5px 2.5px 0 var(--ink, #1F1E1D);
+}
+
+.mc-btn-enroll:hover {
+  background: #e69415;
+}
+
+/* ========================================================
+   سکشن جداگانه علاقه‌مندی‌ها (اسلایدر دوره‌های نشان‌شده)
+   ======================================================== */
+.mc-saved-section {
+  margin-top: 52px;
+  padding-top: 36px;
+  border-top: 2.5px dashed rgba(31, 30, 29, 0.2);
+}
+
+.mc-saved-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.mc-saved-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mc-saved-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--college-light, #FFF4E5);
+  color: var(--college-darker, #B45309);
+  border: 1.5px solid var(--ink, #1F1E1D);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 13px;
+  font-weight: 850;
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  width: fit-content;
+}
+
+.mc-saved-title {
+  font-size: clamp(20px, 2.5vw, 26px);
+  font-weight: 950;
+  color: var(--ink, #1F1E1D);
+  margin: 0;
+}
+
+.mc-saved-nav-btns {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mc-saved-nav-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px 0 12px 0;
+  background: #ffffff;
+  border: 2px solid var(--ink, #1F1E1D);
+  box-shadow: 2.5px 2.5px 0 var(--ink, #1F1E1D);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--ink, #1F1E1D);
+  transition: all 0.15s ease;
+}
+
+.mc-saved-nav-btn:hover:not(:disabled) {
+  background: var(--college, #F8A41D);
+  transform: translate(-1.5px, -1.5px);
+  box-shadow: 4px 4px 0 var(--ink, #1F1E1D);
+}
+
+.mc-saved-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.mc-saved-track-wrap {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -4px;
+  padding: 4px 4px 18px;
+}
+
+.mc-saved-track {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  cursor: grab;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mc-saved-track::-webkit-scrollbar {
+  display: none;
+}
+
+.mc-saved-track.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.mc-saved-track .mc-card {
+  flex: 0 0 340px;
+  width: 340px;
+  max-width: 85vw;
+}
+
+@media (max-width: 640px) {
+  .mc-saved-track .mc-card {
+    flex: 0 0 285px;
+    width: 285px;
+  }
+}
+
+.mc-saved-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #FFFDF0;
+  border: 2px dashed rgba(31, 30, 29, 0.25);
+  border-radius: 14px;
+  padding: 28px 20px;
+}
+
+.mc-saved-empty-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px 0 12px 0;
+  background: #ffffff;
+  border: 1.5px solid var(--ink, #1F1E1D);
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--college-darker, #B45309);
+  flex-shrink: 0;
+}
+
+.mc-saved-empty-text {
+  font-size: 14px;
+  font-weight: 750;
+  color: var(--ink-subtle, #62605B);
+  margin: 0;
+}

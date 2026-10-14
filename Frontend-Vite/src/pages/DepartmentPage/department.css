@@ -1,0 +1,1714 @@
+/* ============================================================
+   DEPARTMENT PAGE: صفحهٔ تک‌صفحه‌ای دپارتمان (الگوی مکتب‌خونه)
+   دیزاین سیستم کالج رکاد: نئوبروتالیسم
+   ساختار: هیرو با پترن دپارتمان + نوار آمار → سایدبار چسبان
+   (دپارتمان‌ها + دسترسی سریع + فیلترها فقط هنگام دید سکشن دوره‌ها)
+   + ستون محتوا (تب پیشنهادی/جدیدترین، موضوعات، همهٔ دوره‌ها،
+   مسیرها، مدرسان، نظرات، CTA): کارت دوره عمودی با کاور بالا
+   پرسونای رنگی هر دپارتمان با متغیرهای --dp / --dp-light / --dp-dark
+   ============================================================ */
+
+/* ---------- پوستهٔ صفحه (رنگ پرسونا از inline style) ---------- */
+.dp-page {
+  --dp-text: var(--ink);
+  /* رنگ متن روی زمینهٔ رنگی دپارتمان: پیش‌فرض جوهر؛ فقط سرمه‌ای IT سفید */
+  background: var(--white);
+  color: var(--ink);
+}
+.dp-card[data-dept="it"] { --dp-text: var(--white); }
+
+/* ============ HERO (بدون خط مشکی، با پترن دپارتمان) ============ */
+.dp-hero {
+  position: relative;
+  background:
+    linear-gradient(to bottom, var(--dp-light), var(--white));
+  overflow: hidden;
+}
+.dp-hero-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .28;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
+}
+.dp-hero-inner {
+  position: relative; z-index: 2;
+  padding: 44px 0 52px;
+}
+.dp-crumb {
+  display: flex; gap: 8px; align-items: center;
+  font-size: 13.5px; font-weight: 600; color: var(--ink-subtle);
+  margin-bottom: 20px;
+}
+.dp-crumb a { color: var(--ink-subtle); text-decoration: none; transition: color .2s; }
+.dp-crumb a:hover { color: var(--dp-dark); }
+.dp-crumb .sep { color: var(--dp); font-weight: 900; }
+.dp-crumb .cur { color: var(--ink); font-weight: 800; }
+
+.dp-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; border: 2px solid var(--ink);
+  border-radius: 999px; padding: 7px 16px;
+  font-weight: 800; font-size: 13px; color: var(--ink);
+  box-shadow: 3px 3px 0 var(--dp);
+  transform: rotate(-1.5deg);
+  width: fit-content;
+}
+.dp-badge .dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--dp); border: 2px solid var(--ink);
+}
+
+.dp-hero-title {
+  font-size: clamp(28px, 4.6vw, 48px);
+  font-weight: 950; line-height: 1.3; color: var(--ink);
+  margin: 22px 0 14px;
+  letter-spacing: -.01em;
+  max-width: 720px;
+}
+.dp-hero-accent {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  color: var(--ink);
+  padding: 0 4px;
+}
+.dp-hero-accent::after {
+  content: "";
+  position: absolute;
+  right: -0.12em;
+  left: -0.12em;
+  top: 52%;
+  height: 0.44em;
+  margin-top: -0.22em;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--dp, #F8A41D);
+  border-radius: 3px 8px 4px 9px;
+  transform: rotate(-2.5deg);
+}
+.dp-hero-lead {
+  font-size: 16px; line-height: 1.95; font-weight: 500;
+  color: var(--ink-subtle);
+  max-width: 640px;
+  margin-bottom: 26px;
+}
+
+/* ردیف دکمه‌های هیرو */
+.dp-hero-actions {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+}
+
+/* دکمه‌ها */
+.dp-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: inherit; font-weight: 900; font-size: 14.5px;
+  padding: 12px 22px;
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  text-decoration: none; cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.dp-btn svg { width: 16px; height: 16px; }
+.dp-btn:hover { transform: translate(2px, -2px); }
+.dp-btn-primary {
+  background: var(--dp); color: var(--dp-text);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.dp-btn-primary:hover { box-shadow: 2px 2px 0 var(--ink); }
+.dp-btn-ghost {
+  background: #fff; color: var(--ink);
+  box-shadow: 4px 4px 0 var(--dp);
+}
+.dp-btn-ghost:hover { box-shadow: 2px 2px 0 var(--dp); }
+.dp-btn-ink {
+  background: var(--ink); color: #fff;
+  box-shadow: 4px 4px 0 var(--dp);
+}
+.dp-btn-ink:hover { box-shadow: 2px 2px 0 var(--dp); }
+
+/* نوار آمار: الگوی مکتب‌خونه (عدد درشت + برچسب، جداکنندهٔ خط‌چین) */
+.dp-hero-stats {
+  display: flex; flex-wrap: wrap; gap: 0;
+  margin-top: 34px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 20px 0 20px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 5px 5px 0 var(--dp);
+  width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+}
+.dp-hstat {
+  display: flex; flex-direction: column; gap: 3px;
+  padding: 14px 24px;
+  min-width: 128px;
+}
+.dp-hstat + .dp-hstat { border-inline-start: 2px dashed var(--ink-light); }
+.dp-hstat b {
+  font-weight: 950; font-size: 22px; line-height: 1.2;
+  color: var(--dp-dark);
+}
+.dp-hstat span {
+  font-size: 12px; font-weight: 700; color: var(--ink-subtle);
+  white-space: nowrap;
+}
+
+/* ============ فیلترها (استایل نئوبروتالیسم برای سگمنت و چک‌باکس‌ها) ============ */
+.dp-fgroup {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.dp-fgroup:last-child { margin-bottom: 0; }
+.dp-fgroup-title {
+  font-size: 13.5px;
+  font-weight: 900;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* سگمنت نوع دوره (همه / رایگان / تخفیف‌دار) */
+.dp-segment {
+  display: flex;
+  background: var(--bg-neutral);
+  border: 2px solid var(--ink);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 4px;
+  gap: 4px;
+  box-shadow: 2.5px 2.5px 0 var(--dp);
+}
+.dp-segment button {
+  flex: 1;
+  background: transparent;
+  border: 1.5px solid transparent;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--ink-subtle);
+  cursor: pointer;
+  border-radius: 8px 0 8px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  transition: all .18s ease;
+  text-align: center;
+}
+.dp-segment button:hover {
+  color: var(--ink);
+  background: rgba(0, 0, 0, 0.05);
+}
+.dp-segment button.on {
+  background: var(--dp);
+  color: var(--dp-text);
+  border-color: var(--ink);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+  font-weight: 950;
+}
+
+/* لیست چک‌باکس‌ها: ستونی مرتب، تفکیک‌شده و با هاور غنی */
+.dp-check-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  width: 100%;
+}
+.dp-check-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--bg-neutral);
+  border: 1.5px solid var(--ink-light);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  user-select: none;
+  transition: all .2s ease;
+}
+.dp-check-item:hover {
+  background: var(--dp-light);
+  border-color: var(--dp);
+  transform: translateX(-3px);
+}
+.dp-check-item:has(input:checked) {
+  background: #fff;
+  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--dp);
+}
+.dp-check-item input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.dp-check-box {
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 6px 0 6px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all .18s ease;
+}
+.dp-check-item input:checked + .dp-check-box {
+  background: var(--dp);
+  border-color: var(--ink);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+.dp-check-item input:checked + .dp-check-box::after {
+  content: '✓';
+  color: var(--dp-text);
+  font-weight: 950;
+  font-size: 13px;
+  line-height: 1;
+}
+.dp-check-label {
+  font-weight: 800;
+  font-size: 13.5px;
+  color: var(--ink);
+  flex: 1;
+}
+.dp-check-count {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--ink-subtle);
+  background: #fff;
+  border: 1.5px solid var(--ink-light);
+  border-radius: var(--r-pill);
+  padding: 2px 8px;
+  min-width: 26px;
+  text-align: center;
+}
+.dp-check-item:has(input:checked) .dp-check-count {
+  border-color: var(--ink);
+  color: var(--ink);
+  font-weight: 900;
+  background: var(--dp-light);
+}
+
+/* تگ موضوع فعال در فیلتر */
+.dp-filter-topic-tag {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: var(--dp-light);
+  border: 1.5px solid var(--dp);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--dp-dark);
+}
+.dp-filter-topic-tag button {
+  background: var(--female-light);
+  color: var(--female-dark);
+  border: 1px solid var(--female);
+  border-radius: var(--r-pill);
+  padding: 3px 10px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 900;
+  transition: all .15s ease;
+}
+.dp-filter-topic-tag button:hover {
+  background: var(--female);
+  color: #fff;
+}
+
+/* دکمه پاک‌کردن فیلترها در هدر */
+.dp-reset {
+  padding: 4px 12px;
+  border: 2px solid var(--female-dark);
+  border-radius: var(--r-pill);
+  background: var(--female-light);
+  color: var(--female-dark);
+  font-family: inherit;
+  font-size: 11.5px; font-weight: 900;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.dp-reset:hover { background: var(--female); color: #fff; }
+
+/* ---------- ستون محتوا: فواصل استاندارد UI و متناسب با گرید ---------- */
+.dp-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(64px, 7vw, 100px);
+  padding-block: clamp(48px, 5vw, 68px) clamp(80px, 8vw, 120px);
+}
+
+.dp-block {
+  scroll-margin-top: 100px;
+}
+/* بلوک کارتی: زمینهٔ تینت + بوردر جوهر */
+.dp-card-block {
+  background: var(--dp-light);
+  border: 2px solid var(--ink);
+  border-radius: 24px 0 24px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 6px 6px 0 var(--dp);
+  padding: 34px;
+}
+
+.dp-sec-head {
+  margin-bottom: clamp(24px, 2.5vw, 34px);
+}
+.dp-sec-title {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 950; color: var(--ink); line-height: 1.35;
+  margin: 0;
+}
+.dp-sec-accent {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  color: var(--ink);
+  padding: 0 4px;
+}
+.dp-sec-accent::after {
+  content: "";
+  position: absolute;
+  right: -0.12em;
+  left: -0.12em;
+  top: 52%;
+  height: 0.44em;
+  margin-top: -0.22em;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--dp, #F8A41D);
+  border-radius: 3px 8px 4px 9px;
+  transform: rotate(-2.5deg);
+}
+
+/* ============ کنترل بخش پیشنهادی: تب‌ها راست، فلش‌ها چپ ============ */
+.dp-suggest-ctrl {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+.dp-tabs {
+  display: inline-flex; gap: 4px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: var(--r-pill);
+  padding: 4px;
+  box-shadow: 2.5px 2.5px 0 var(--dp);
+}
+.dp-tab {
+  padding: 6px 16px;
+  border: 1.5px solid transparent;
+  border-radius: var(--r-pill);
+  font-family: inherit;
+  font-size: 12.5px; font-weight: 800;
+  color: var(--ink-subtle);
+  background: transparent;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.dp-tab:hover { color: var(--ink); background: var(--bg-neutral); }
+.dp-tab.active {
+  background: var(--dp); color: var(--dp-text);
+  border-color: var(--ink);
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+  font-weight: 900;
+}
+/* فلش‌های قبلی/بعدی: سمت چپ، در راستای تب‌ها */
+.dp-row-nav {
+  display: flex; gap: 8px;
+}
+.dp-nav {
+  width: 36px; height: 36px;
+  display: grid; place-items: center;
+  background: #fff; color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 2.5px 2.5px 0 var(--dp);
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease;
+}
+.dp-nav:hover:enabled { transform: translate(2px, -2px); box-shadow: 1px 1px 0 var(--dp); }
+.dp-nav:disabled { opacity: .35; box-shadow: none; cursor: default; }
+
+/* ============ ردیف اسکرولی دوره‌ها ============ */
+.dp-row {
+  display: flex; gap: 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 8px 6px 16px;
+  margin: -8px -6px -16px;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.dp-row::-webkit-scrollbar { display: none; }
+.dp-row.is-dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+.dp-row.is-dragging .dp-card {
+  pointer-events: none;
+}
+/* دسکتاپ: دقیقاً ۳ کارت در نمای ردیف */
+.dp-row > .dp-card { flex: 0 0 calc((100% - 48px) / 3); }
+@media (max-width: 900px) { .dp-row { gap: 16px; } .dp-row > .dp-card { flex-basis: calc((100% - 16px) / 2); } }
+@media (max-width: 640px) { .dp-row > .dp-card { flex-basis: 86%; } }
+
+.dp-more { text-align: center; margin-top: 30px; }
+
+/* ============ کارت دوره: عمودی: کاور بالای کارت ============
+   سایهٔ نئوبروتالیسم بدون تداخل و بدون گلیچ ::before */
+.dp-card {
+  position: relative;
+  display: flex; flex-direction: column;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 20px 0 20px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  text-decoration: none; color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  transform: var(--rot, rotate(0deg));
+  transition: transform .24s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .24s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.dp-card:hover {
+  transform: var(--rot, rotate(0deg)) translateY(-4px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+/* کاور: تینت + پترن دپارتمان + آیکون + تگ */
+.dp-card-cover {
+  position: relative; z-index: 1;
+  height: 112px;
+  background: var(--dp-light);
+  border-bottom: 2px solid var(--ink);
+  border-radius: 18px 0 0 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  display: grid; place-items: center;
+  color: var(--dp-dark);
+  overflow: hidden;
+}
+.dp-cover-pattern {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: .35;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+/* پرشدگی نقطه‌ای کاور زیر آیکون */
+.dp-card-cover::after {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(41, 40, 39, .10) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+.dp-card-cover svg { position: relative; z-index: 1; }
+/* تگ (badge) داخل کاور: بالا راست */
+.dp-card-tag {
+  position: absolute; top: 10px; right: 10px; z-index: 2;
+  background: var(--dp); color: var(--dp-text);
+  border: 2px solid var(--ink);
+  font-size: 10.5px; font-weight: 900;
+  padding: 3px 10px;
+  border-radius: 8px 0 8px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  letter-spacing: .02em;
+}
+
+/* بدنه */
+.dp-card-body {
+  position: relative; z-index: 1;
+  background: #fff;
+  border-radius: 0 0 18px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 15px 17px 15px;
+  display: flex; flex-direction: column; gap: 9px; flex: 1;
+}
+.dp-card-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.dp-card-cat {
+  font-size: 11px; font-weight: 900; color: var(--dp-dark);
+  background: var(--dp-light);
+  border: 1.5px solid var(--dp);
+  width: fit-content;
+  padding: 2px 10px;
+  border-radius: 0 .5rem 0 .5rem;
+}
+.dp-card-title {
+  font-size: 15px; font-weight: 800; line-height: 1.6; color: var(--ink);
+}
+.dp-card-inst {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12.5px; font-weight: 700; color: var(--ink-subtle);
+}
+.dp-av {
+  width: 26px; height: 26px; flex-shrink: 0;
+  background: var(--dp-light);
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-weight: 900; font-size: 12px; color: var(--dp-dark);
+}
+.dp-card-meta {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 5px 12px;
+  padding: 7px 0;
+  border-top: 1.5px dashed var(--ink-light);
+  border-bottom: 1.5px dashed var(--ink-light);
+  font-size: 11.5px; font-weight: 700; color: var(--ink-subtle);
+}
+.dp-card-meta > span { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.dp-rate { color: var(--ink); font-weight: 800; }
+.dp-rate svg { color: #f5a623; }
+
+/* فوتر کارت: قیمت + دکمه مشاهده */
+.dp-card-foot {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 8px; margin-top: auto;
+}
+.dp-price { display: flex; flex-direction: column; line-height: 1.3; }
+.dp-price s { text-decoration: line-through; color: var(--ink-subtle); font-size: 11.5px; font-weight: 600; }
+.dp-price b { font-size: 14px; font-weight: 900; color: var(--ink); }
+.dp-free {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  border: 1.5px solid var(--teal);
+  font-size: 12px; font-weight: 900;
+  padding: 3px 12px;
+  border-radius: 0 .5rem 0 .5rem;
+}
+.dp-card-btn {
+  background: var(--navy); color: #fff;
+  border: 2px solid var(--ink); padding: 7px 15px;
+  font-weight: 800; font-size: 12.5px;
+  border-radius: 10px;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+/* رنگ دیفالت دکمه مشاهده در دپارتمان‌های زبان‌های خارجی و فناوری اطلاعات: زرد کالج */
+.dp-card[data-dept="languages"] .dp-card-btn,
+.dp-card[data-dept="it"] .dp-card-btn,
+.dp-page[data-dept="languages"] .dp-card-btn,
+.dp-page[data-dept="it"] .dp-card-btn {
+  background: var(--college, #f8a41d);
+  color: var(--ink, #18181b);
+}
+
+.dp-card:hover .dp-card-btn,
+.dp-card-btn:hover {
+  background: var(--dp); color: var(--dp-text);
+  transform: rotate(-2deg) scale(1.03);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.dp-card[data-dept="languages"]:hover .dp-card-btn,
+.dp-card[data-dept="it"]:hover .dp-card-btn,
+.dp-page[data-dept="languages"] .dp-card:hover .dp-card-btn,
+.dp-page[data-dept="it"] .dp-card:hover .dp-card-btn {
+  background: var(--dp);
+  color: var(--dp-text);
+  transform: rotate(-2deg) scale(1.03);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+/* بج‌ها و تگ‌های کارت دوره‌ها در دپارتمان‌های زبان‌های خارجی و فناوری اطلاعات: رنگ زرد کالج */
+.dp-card[data-dept="languages"] .dp-card-tag,
+.dp-card[data-dept="it"] .dp-card-tag,
+.dp-page[data-dept="languages"] .dp-card-tag,
+.dp-page[data-dept="it"] .dp-card-tag {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #18181B);
+  border: 2px solid var(--ink);
+}
+
+.dp-card[data-dept="languages"] .dp-card-cat,
+.dp-card[data-dept="it"] .dp-card-cat,
+.dp-page[data-dept="languages"] .dp-card-cat,
+.dp-page[data-dept="it"] .dp-card-cat {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #18181B);
+  border: 1.5px solid var(--ink);
+}
+
+/* ============ موضوعات پرطرفدار ============
+   دسکتاپ: wrap عادی؛ موبایل: دو ردیف اسکرول افقی */
+.dp-topics {
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+/* دسکتاپ: ردیف‌ها در جریان فلکس والد حل می‌شوند */
+.dp-topic-row { display: contents; }
+.dp-topic {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  padding: 9px 20px;
+  border-radius: var(--r-pill);
+  font-family: inherit;
+  font-size: 13.5px; font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transform: var(--rot, rotate(0deg));
+  box-shadow: 3px 3px 0 var(--dp);
+  transition: transform .22s cubic-bezier(0.2, 0.8, 0.2, 1), background .2s ease, color .2s ease, box-shadow .2s ease;
+  will-change: transform;
+}
+.dp-topic:hover {
+  transform: var(--rot, rotate(0deg)) translateY(-3px) scale(1.02);
+  background: var(--dp); color: var(--dp-text);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.dp-topic.active {
+  background: var(--dp);
+  color: var(--dp-text);
+  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: var(--rot, rotate(0deg)) scale(1.04);
+  font-weight: 900;
+}
+.dp-topic-check {
+  display: inline-grid;
+  place-items: center;
+  width: 17px; height: 17px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.15);
+  font-size: 11px;
+  line-height: 1;
+}
+
+/* ============ همهٔ دوره‌ها: نوار تعداد + فیلتر + مرتب‌سازی ============ */
+.dp-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; flex-wrap: wrap;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 16px 0 16px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 4px 4px 0 var(--dp);
+  padding: 10px 16px;
+  margin-bottom: 30px;
+}
+.dp-toolbar-start {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.dp-count {
+  font-size: 13px; font-weight: 700; color: var(--ink-subtle);
+}
+.dp-count b { font-size: 15px; font-weight: 950; color: var(--dp-dark); margin-inline-end: 4px; }
+.dp-active-topic-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--dp-light);
+  color: var(--dp-dark);
+  border: 1.5px solid var(--dp);
+  border-radius: 8px 0 8px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 4px 10px;
+  font-size: 12px; font-weight: 800;
+}
+.dp-active-topic-clear {
+  background: var(--female-light);
+  color: var(--female-dark);
+  border: 1px solid var(--female);
+  border-radius: 50%;
+  width: 17px; height: 17px;
+  display: inline-grid; place-items: center;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 12px;
+  line-height: 1;
+  transition: all .15s ease;
+}
+.dp-active-topic-clear:hover {
+  background: var(--female);
+  color: #fff;
+}
+.dp-tools {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+/* دکمهٔ فیلتر */
+.dp-filter-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 2.5px 2.5px 0 var(--dp);
+  font-family: inherit;
+  font-size: 12.5px; font-weight: 900; color: var(--ink);
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.dp-filter-btn:hover { background: var(--dp-light); }
+.dp-filter-count {
+  display: inline-grid; place-items: center;
+  min-width: 18px; height: 18px;
+  padding: 0 4px;
+  background: var(--accent); color: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: 99px;
+  font-size: 10.5px; font-weight: 900;
+}
+/* مرتب‌سازی: دراپ‌داون سفارشی */
+.dp-sort {
+  position: relative;
+  display: flex; align-items: center; gap: 8px;
+}
+.dp-sort-lab { font-size: 12px; font-weight: 800; color: var(--ink-subtle); white-space: nowrap; }
+.dp-sort-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 7px 14px;
+  background: var(--dp-light);
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  font-family: inherit;
+  font-size: 12.5px; font-weight: 900; color: var(--dp-dark);
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.dp-sort-btn .caret { font-size: 9px; color: var(--ink-subtle); }
+.dp-sort-btn:hover { background: var(--dp); color: var(--dp-text); }
+.dp-sort-menu {
+  position: absolute; top: calc(100% + 8px); inset-inline-end: 0;
+  z-index: 20;
+  min-width: 170px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 14px 0 14px 0;
+  box-shadow: 4px 4px 0 var(--ink);
+  padding: 6px;
+  list-style: none;
+  margin: 0;
+}
+.dp-sort-menu button {
+  display: block; width: 100%;
+  text-align: start;
+  padding: 9px 12px;
+  border-radius: 9px 0 9px 0;
+  border: none; background: transparent;
+  font-family: inherit;
+  font-size: 12.5px; font-weight: 700; color: var(--ink-faq);
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.dp-sort-menu button:hover { background: var(--dp-light); color: var(--dp-dark); }
+.dp-sort-menu button.active { background: var(--dp); color: var(--dp-text); font-weight: 900; }
+
+/* حالت خالی */
+.dp-empty {
+  background: var(--bg-neutral);
+  border: 2px dashed var(--ink-light);
+  border-radius: 20px 0 20px 0;
+  padding: 44px 24px;
+  text-align: center;
+  font-size: 14px; font-weight: 700; color: var(--ink-subtle);
+}
+
+/* گرید دوره‌ها: حداکثر ۳ کارت در هر ردیف + صفحه‌بندی */
+.dp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 24px;
+  padding-top: 6px;
+}
+@media (max-width: 980px) {
+  .dp-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .dp-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* صفحه‌بندی */
+.dp-pagination {
+  display: flex; justify-content: center; align-items: center;
+  gap: 8px; flex-wrap: wrap;
+  margin-top: 42px;
+}
+.dp-page-btn {
+  min-width: 42px; height: 42px;
+  padding: 0 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #fff; color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 2.5px 2.5px 0 var(--dp);
+  font-family: inherit;
+  font-weight: 900; font-size: 14px;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.dp-page-btn svg { width: 16px; height: 16px; }
+.dp-page-btn:hover:enabled:not(.active) { transform: translate(2px, -2px); box-shadow: 1px 1px 0 var(--dp); }
+.dp-page-btn.active {
+  background: var(--dp); color: var(--dp-text);
+  cursor: default;
+}
+.dp-page-btn:disabled { opacity: .35; box-shadow: none; cursor: default; }
+
+/* دکمه مشاهده همه به‌جای صفحه‌بندی با دیزاین نئوبروتالیسم کالج */
+.dp-view-all-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+}
+
+.dp-view-all-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 900;
+  padding: 13px 26px;
+  border-radius: 12px;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  border: 2px solid var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.dp-view-all-btn.primary {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #18181B);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.dp-view-all-btn.primary:hover {
+  background: #fbb63d;
+  color: var(--ink, #18181B);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.dp-view-all-btn.primary:active {
+  background: var(--college-darker, #e08e0e);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.dp-view-all-btn.ghost {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+.dp-view-all-btn.ghost:hover {
+  background: var(--college-light, #FFF7ED);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.dp-view-all-btn svg {
+  transition: transform .2s ease;
+}
+
+.dp-view-all-btn:hover svg {
+  transform: translateY(2px);
+}
+
+/* ============ مسیرهای یادگیری ============ */
+.dp-paths-intro {
+  margin-bottom: 24px;
+}
+.dp-paths-intro p {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--ink-subtle);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 680px;
+}
+.dp-paths {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  position: relative;
+}
+@media (max-width: 960px) {
+  .dp-paths { grid-template-columns: 1fr; gap: 20px; }
+}
+.dp-path {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 20px 0 20px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 22px 22px 20px;
+  box-shadow: 4px 4px 0 var(--dp);
+  transition: transform .24s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .24s ease;
+  will-change: transform;
+}
+.dp-path:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.dp-path-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1.5px dashed var(--ink-light);
+}
+.dp-path-num {
+  background: var(--dp);
+  color: var(--dp-text);
+  border: 2px solid var(--ink);
+  font-weight: 950;
+  font-size: 13.5px;
+  padding: 3px 12px;
+  border-radius: 8px 0 8px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.dp-path-tag {
+  font-size: 11.5px;
+  font-weight: 900;
+  color: var(--dp-dark);
+  background: var(--dp-light);
+  border: 1.5px solid var(--dp);
+  border-radius: var(--r-pill);
+  padding: 3px 10px;
+}
+.dp-path-content {
+  flex: 1;
+}
+.dp-path h4 {
+  font-size: 17.5px;
+  font-weight: 950;
+  color: var(--ink);
+  margin: 0 0 10px;
+  line-height: 1.45;
+}
+.dp-path p {
+  font-size: 13px;
+  line-height: 1.9;
+  font-weight: 500;
+  color: var(--ink-subtle);
+  margin-bottom: 18px;
+}
+.dp-path-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1.5px dashed var(--ink-light);
+  margin-top: auto;
+}
+.dp-path-feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink-subtle);
+}
+.dp-path-feature svg { color: var(--dp-dark); }
+.dp-path-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 900;
+  color: var(--ink);
+  background: var(--dp-light);
+  border: 1.5px solid var(--ink);
+  padding: 6px 14px;
+  border-radius: 8px 0 8px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform .2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .2s ease, background-color .2s ease;
+}
+.dp-path-btn:hover {
+  background: var(--dp);
+  color: var(--dp-text);
+  transform: translate(2px, -2px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+.dp-path-btn svg { width: 13px; height: 13px; }
+
+/* ============ مدرسان برتر (کاور دورنگ دپارتمان + آواتار شناور) ============ */
+.dp-insts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1024px) {
+  .dp-insts { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+}
+@media (max-width: 560px)  {
+  .dp-insts { grid-template-columns: 1fr; gap: 16px; }
+}
+.dp-inst {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 20px 0 20px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 4px 4px 0 var(--dp);
+  overflow: hidden;
+  transition: transform .24s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .24s ease;
+  will-change: transform;
+}
+.dp-inst:hover {
+  transform: translateY(-4px);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.dp-inst-banner {
+  position: relative;
+  height: 72px;
+  background: var(--dp);
+  border-bottom: 2px solid var(--ink);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 8px 10px;
+}
+.dp-inst-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.dp-inst-badge {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  font-size: 10.5px;
+  font-weight: 900;
+  padding: 2px 8px;
+  border-radius: 6px 0 6px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+.dp-inst-body {
+  position: relative;
+  padding: 0 16px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+}
+.dp-av-lg {
+  position: relative;
+  top: -36px;
+  margin-bottom: -22px;
+  width: 72px;
+  height: 72px;
+  background: #fff;
+  color: var(--dp-dark);
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 950;
+  font-size: 27px;
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+  z-index: 2;
+  transition: transform .25s ease, background .25s ease;
+}
+.dp-inst:hover .dp-av-lg {
+  transform: scale(1.06) rotate(-4deg);
+  background: var(--dp-light);
+}
+.dp-inst h5 {
+  font-size: 16px;
+  font-weight: 950;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.dp-inst-role {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--dp-dark);
+  background: var(--dp-light);
+  border: 1px solid var(--dp);
+  border-radius: 0 .4rem 0 .4rem;
+  padding: 2px 10px;
+  margin-bottom: 14px;
+}
+.dp-inst-meta {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1.5px dashed var(--ink-light);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink-subtle);
+  margin-top: auto;
+}
+.dp-inst-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.dp-inst-meta svg { color: var(--dp-dark); }
+
+/* ============ تجربهٔ هنرجویان (دیزاین سیستم نئوبروتالیسم رکاد) ============ */
+.dp-tests {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+@media (max-width: 1024px) {
+  .dp-tests { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+@media (max-width: 720px) {
+  .dp-tests { grid-template-columns: 1fr; gap: 18px; }
+}
+
+.dp-test-card {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 20px 0 20px 0;
+  corner-shape: squircle;
+  -webkit-corner-shape: squircle;
+  padding: 24px 22px 20px;
+  box-shadow: 4.5px 4.5px 0 var(--dp);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  transform: var(--rot, none);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+  will-change: transform;
+}
+.dp-test-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 6.5px 6.5px 0 var(--ink);
+}
+
+.dp-test-quote-mark {
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  font-size: 85px;
+  line-height: 1;
+  color: var(--dp);
+  opacity: 0.18;
+  font-family: Georgia, serif;
+  font-weight: 900;
+  pointer-events: none;
+  user-select: none;
+}
+
+.dp-test-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.dp-test-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--dp-light);
+  color: var(--dp-dark);
+  border: 1.5px solid var(--ink);
+  font-size: 11px;
+  font-weight: 900;
+  padding: 3px 9px;
+  border-radius: 6px 0 6px 0;
+  corner-shape: squircle;
+  -webkit-corner-shape: squircle;
+  box-shadow: 1.5px 1.5px 0 var(--ink);
+}
+
+.dp-test-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  color: #f59e0b;
+}
+.dp-test-stars svg {
+  width: 13.5px;
+  height: 13.5px;
+  fill: #f59e0b;
+}
+
+.dp-test-quote {
+  font-size: 13.5px;
+  line-height: 1.95;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.dp-test-foot {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1.5px dashed var(--ink-light);
+  position: relative;
+  z-index: 1;
+}
+
+.dp-test-av {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  background: var(--dp);
+  color: var(--dp-text);
+  border: 2px solid var(--ink);
+  border-radius: 12px 0 12px 0;
+  corner-shape: squircle;
+  -webkit-corner-shape: squircle;
+  box-shadow: 2px 2px 0 var(--ink);
+  display: grid;
+  place-items: center;
+  font-weight: 950;
+  font-size: 18px;
+  transition: transform 0.22s ease, background 0.22s ease;
+}
+.dp-test-card:hover .dp-test-av {
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.dp-test-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.dp-test-name {
+  font-size: 14px;
+  font-weight: 950;
+  color: var(--ink);
+}
+.dp-test-role {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--ink-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dp-test-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--teal-dark);
+  background: var(--teal-light);
+  border: 1px solid var(--teal);
+  padding: 2.5px 8px;
+  border-radius: 0 6px 0 6px;
+  corner-shape: squircle;
+  -webkit-corner-shape: squircle;
+  white-space: nowrap;
+}
+.dp-test-pulse {
+  width: 6px;
+  height: 6px;
+  background: var(--teal-dark);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(89, 187, 175, 0.35);
+}
+
+/* ============ CTA ============ */
+.dp-cta {
+  background: var(--dp);
+  border: 2.5px solid var(--ink);
+  border-radius: 0 28px 0 28px;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  padding: 40px 44px;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 28px; align-items: center;
+  position: relative; overflow: hidden;
+  box-shadow: 8px 8px 0 var(--ink);
+}
+.dp-cta-pattern {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+.dp-cta::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, .22) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  pointer-events: none;
+}
+.dp-cta-copy { position: relative; z-index: 1; }
+.dp-cta h2 {
+  font-size: clamp(21px, 3vw, 30px); font-weight: 950;
+  color: var(--dp-text); margin: 0 0 12px;
+}
+.dp-cta p {
+  font-size: 14.5px; line-height: 1.9; font-weight: 600;
+  color: var(--dp-text); opacity: .92;
+  margin-bottom: 22px;
+  max-width: 560px;
+}
+.dp-cta .dp-btn-ink {
+  background: var(--ink); color: #fff;
+  box-shadow: 4px 4px 0 rgba(255, 255, 255, .55);
+}
+.dp-cta-visual {
+  position: relative; z-index: 1;
+  width: 150px; height: 150px;
+  background: rgba(255, 255, 255, .16);
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  color: var(--dp-text);
+  transform: rotate(-6deg);
+}
+@media (max-width: 820px) {
+  .dp-cta { grid-template-columns: 1fr; padding: 32px 24px; }
+  .dp-cta-visual { display: none; }
+}
+
+/* ============ فیلترها (دسکتاپ: شناور راست پایین / موبایل: باتم‌شیت) ============ */
+/* دسکتاپ: بدون مسدودسازی صفحه تا کاربر بتواند اسکرول کند و تغییرات زنده را ببیند */
+@media (min-width: 769px) {
+  .dp-filter-scrim {
+    position: static;
+    inset: auto;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    pointer-events: none;
+    animation: none;
+    z-index: 90;
+  }
+  .dp-filter-modal {
+    pointer-events: auto;
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 360px;
+    max-height: calc(100vh - 48px);
+    background: #fff;
+    border: 2.5px solid var(--ink);
+    border-radius: 20px 0 20px 0;
+    corner-shape: squircle; -webkit-corner-shape: squircle;
+    box-shadow: 6px 6px 0 var(--dp);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 90;
+    animation: dpFilterPop .25s cubic-bezier(.34, 1.4, .64, 1);
+  }
+  @keyframes dpFilterPop {
+    from { opacity: 0; transform: translateY(20px) scale(.94); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .dp-sheet-handle { display: none; }
+}
+
+/* موبایل: باتم‌شیت نرم از پایین به بالا همراه با پس‌زمینهٔ لمسی */
+@media (max-width: 768px) {
+  .dp-filter-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 85;
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: flex-end;
+    animation: dpScrimIn .2s ease;
+  }
+  @keyframes dpScrimIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .dp-filter-modal {
+    width: 100%;
+    max-height: 85vh;
+    background: #fff;
+    border: 2.5px solid var(--ink);
+    border-bottom: none;
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 -6px 0 var(--dp);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 90;
+    animation: dpSlideUp .3s cubic-bezier(.22, 1, .36, 1);
+  }
+  @keyframes dpSlideUp {
+    from { transform: translateY(100%); }
+    to   { transform: translateY(0); }
+  }
+  .dp-sheet-handle {
+    width: 44px;
+    height: 5px;
+    background: var(--ink-light);
+    border-radius: 99px;
+    margin: 10px auto 4px;
+    flex-shrink: 0;
+  }
+}
+
+.dp-filter-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 2px dashed var(--ink-light);
+  background: var(--bg-neutral);
+}
+.dp-filter-head-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 950;
+  color: var(--ink);
+}
+.dp-filter-head-title svg { color: var(--dp-dark); }
+.dp-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.dp-filter-close {
+  width: 34px;
+  height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: 8px 0 8px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  cursor: pointer;
+  transition: all .18s ease;
+}
+.dp-filter-close:hover {
+  background: var(--dp);
+  color: var(--dp-text);
+}
+.dp-filter-body {
+  padding: 18px;
+  overflow-y: auto;
+  flex: 1;
+}
+.dp-filter-body .dp-fgroup { margin-bottom: 20px; }
+
+/* ============ دکمهٔ شناور انتخاب دپارتمان (مثل چت‌بات) ============ */
+.dp-fab-wrap {
+  display: block;
+  position: fixed;
+  left: 18px; bottom: 18px;
+  z-index: 70;
+}
+.dp-fab {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--dp); color: var(--dp-text);
+  border: 2.5px solid var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  display: grid; place-items: center;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+  position: relative; z-index: 2;
+}
+.dp-fab:hover { transform: translate(2px, -2px); box-shadow: 2px 2px 0 var(--ink); }
+.dp-fab svg { transition: transform .3s ease; }
+.dp-fab.open svg { transform: rotate(45deg); }
+.dp-fab-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0, 0, 0, .35);
+  z-index: 1;
+  animation: dpScrimIn .2s ease;
+}
+.dp-fab-menu {
+  position: absolute; left: 0; bottom: 68px;
+  min-width: 208px;
+  display: flex; flex-direction: column; gap: 8px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 16px 0 16px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  box-shadow: 5px 5px 0 var(--ink);
+  padding: 10px;
+  z-index: 2;
+  animation: dpPop .25s cubic-bezier(.34, 1.56, .64, 1);
+}
+@keyframes dpPop {
+  from { opacity: 0; transform: translateY(14px) scale(.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.dp-fab-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px;
+  border: 2px solid transparent;
+  border-radius: 10px 0 10px 0;
+  corner-shape: squircle; -webkit-corner-shape: squircle;
+  font-size: 13.5px; font-weight: 800; color: var(--ink);
+  text-decoration: none;
+  transition: all .18s ease;
+}
+.dp-fab-item:hover { background: var(--dp-light); border-color: var(--dp); }
+.dp-fab-item.active {
+  border-color: var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  font-weight: 900;
+}
+.dp-fab-ic {
+  width: 30px; height: 30px; flex-shrink: 0;
+  display: grid; place-items: center;
+  background: var(--bg-neutral);
+  border: 1.5px solid var(--ink-light);
+  border-radius: 9px 0 9px 0;
+  color: var(--ink-subtle);
+}
+.dp-fab-item.active .dp-fab-ic {
+  background: rgba(255, 255, 255, .22);
+  border-color: transparent;
+  color: inherit;
+}
+
+/* ============ واکنش‌گرایی ============ */
+@media (max-width: 980px) {
+  .dp-main { gap: 44px; padding-block: 32px 72px; }
+}
+
+/* ============ موبایل ============ */
+@media (max-width: 700px) {
+  .dp-hero-inner { padding: 28px 0 38px; }
+  .dp-hero-title { font-size: clamp(24px, 7vw, 32px); margin: 16px 0 12px; }
+  .dp-badge { font-size: 12px; padding: 6px 13px; }
+  .dp-hero-lead { font-size: 14px; line-height: 1.8; margin-bottom: 20px; }
+  .dp-hero-stats { width: 100%; border-radius: 16px 0 16px 0; }
+  .dp-hstat { flex: 1; padding: 11px 12px; min-width: calc(50% - 0px); }
+  .dp-hstat:nth-child(3) { border-inline-start: none; }
+  .dp-hstat:nth-child(n+3) { border-top: 2px dashed var(--ink-light); }
+  .dp-hstat b { font-size: 19px; }
+  .dp-hstat span { font-size: 11px; }
+
+  .dp-card-block { padding: 22px 16px; border-radius: 18px 0 18px 0; }
+  .dp-sec-head { margin-bottom: 20px; }
+  .dp-sec-title { font-size: clamp(20px, 5.5vw, 24px); }
+
+  .dp-suggest-ctrl { justify-content: space-between; gap: 10px; margin-bottom: 18px; }
+  .dp-tabs { padding: 3px; }
+  .dp-tab { padding: 5px 12px; font-size: 11.5px; }
+  .dp-nav { width: 32px; height: 32px; }
+
+  /* موضوعات: دو ردیف اسکرول افقی با لبهٔ کامل */
+  .dp-topics { display: block; }
+  .dp-topic-row {
+    display: flex; gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding-block: 4px 6px;
+    margin-inline: -16px;
+    padding-inline: 16px;
+  }
+  .dp-topic-row::-webkit-scrollbar { display: none; }
+  .dp-topic-row + .dp-topic-row { margin-top: 4px; }
+  .dp-topic { flex-shrink: 0; padding: 7px 14px; font-size: 12px; }
+
+  /* نوار ابزار دوره */
+  .dp-toolbar {
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .dp-toolbar-start {
+    justify-content: space-between;
+    width: 100%;
+  }
+  .dp-tools {
+    justify-content: flex-end;
+    width: 100%;
+    gap: 8px;
+  }
+  .dp-filter-btn, .dp-sort-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .dp-fab-wrap { left: 14px; bottom: 14px; }
+  .dp-fab { width: 50px; height: 50px; }
+}
+
+@media (max-width: 480px) {
+  .dp-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .dp-hero-actions .dp-btn {
+    justify-content: center;
+  }
+  .dp-card-cover { height: 98px; }
+  .dp-card-title { font-size: 14px; }
+  .dp-card-body { padding: 13px 14px; }
+}

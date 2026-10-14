@@ -19,7 +19,7 @@ export const exportValidation = (req, res, next) => {
         algorithms: ["HS256"],
       });
       req.userId = decoded.id;
-      req.role = decoded.role;
+      req.role = decoded.role || "user";
     } else {
       req.userId = null;
       req.role = null;

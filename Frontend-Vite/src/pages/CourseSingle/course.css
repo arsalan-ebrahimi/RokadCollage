@@ -1,0 +1,860 @@
+/* ============================================================
+   تک‌صفحهٔ دوره: Course Single styles
+   دقیقاً مطابق آرت‌بورد ۰۵ (Curriculum Dashboard) از
+   «Course Landing Pages.html»:
+   بوردر 1.5px ink (داخلی 1px)، شدوهای 2.75px 2.75px 0 فقط روی
+   topbar/کارت/فصل باز/پلیر، رادیوس 10/12/17/24/Pill،
+   تامبنیل گرادیان کهربایی، دکمهٔ Pill، تخفیف #C60036 بدون بوردر.
+   ============================================================ */
+.cs-page {
+  position: relative;
+  padding: 24px 0 80px;
+  background: #f7f5f0;
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* ---------- Topbar (طرح: s5-topbar) ---------- */
+.cs-topbar {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-lg);
+  padding: 14px 22px;
+  box-shadow: 2.75px 2.75px 0 var(--college);
+  margin: 12px auto 24px;
+  flex-wrap: wrap;
+}
+.cs-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.cs-back:hover { color: var(--college-dark); }
+.cs-back svg { width: 14px; height: 14px; }
+.cs-crumbs { color: var(--ink-subtle); font-size: 13px; font-weight: 500; display: inline-flex; align-items: center; gap: 7px; flex-wrap: wrap; }
+.cs-crumbs a { color: var(--ink-faq); text-decoration: none; font-weight: 600; transition: color 0.2s ease; }
+.cs-crumbs a:hover { color: var(--college-dark); text-decoration: none; }
+.cs-crumbs .sep { color: var(--ink-light); font-weight: 400; }
+.cs-crumbs b { color: var(--ink); font-weight: 700; }
+.cs-students {
+  margin-inline-start: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cs-students .avs { display: flex; }
+.cs-students .av {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
+  background: var(--college);
+  margin-inline-start: -8px;
+}
+.cs-students .av:nth-child(2) { background: #009966; }
+.cs-students .av:nth-child(3) { background: #C60036; }
+
+/* ---------- Grid ---------- */
+.cs-grid {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 26px;
+  align-items: start;
+}
+
+/* ---------- موبایل: ویدیو + عنوان بالا، بقیه پایین ---------- */
+.cs-player-col { display: none; } /* دسکتاپ: مخفی، ویدیو توی سایدباره */
+
+/* ---------- Main (طرح: s5-main بدون شدو) ---------- */
+.cs-main {
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+}
+
+/* ---------- Hero (طرح: s5-hero) ---------- */
+.cs-hero {
+  background: linear-gradient(135deg, var(--college-light) 0%, var(--college-light-active) 100%);
+  border-bottom: 1.5px solid var(--ink);
+  padding: 30px 34px;
+  position: relative;
+  overflow: hidden;
+}
+.cs-hero::after {
+  content: "";
+  position: absolute;
+  right: -40px;
+  top: -40px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, var(--college) 0%, transparent 70%);
+  opacity: 0.3;
+  pointer-events: none;
+}
+.cs-hero h1 {
+  margin: 12px 0 0;
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.38;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  max-width: 720px;
+  position: relative;
+}
+.cs-lede {
+  margin: 14px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.75;
+  color: var(--ink-faq);
+  max-width: 660px;
+  position: relative;
+}
+.cs-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  position: relative;
+}
+.cs-meta .m {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-faq);
+  background: #fff;
+  border: 1px solid var(--ink);
+  border-radius: var(--r-pill);
+  padding: 6px 14px;
+}
+
+/* ---------- Tabs (طرح: s5-tabs) ---------- */
+.cs-tabs {
+  display: flex;
+  padding: 0 32px;
+  border-bottom: 1px solid var(--ink-light);
+  overflow-x: auto;
+}
+.cs-tabs button {
+  padding: 15px 18px;
+  font-size: 14.5px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--ink-subtle);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.cs-tabs button:hover { color: var(--ink); }
+.cs-tabs button.on {
+  color: var(--ink);
+  border-bottom-color: var(--college);
+}
+
+/* ---------- Curriculum (طرح: s5-curriculum) ---------- */
+.cs-curriculum { padding: 20px 32px 26px; }
+.cs-progress {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 13.5px;
+  margin-bottom: 14px;
+}
+.cs-progress b { font-weight: 700; color: var(--ink); white-space: nowrap; }
+.cs-progress .bar {
+  flex: 1;
+  height: 8px;
+  background: var(--college-light);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.cs-progress .bar span {
+  display: block;
+  height: 100%;
+  width: 35%;
+  background: var(--college);
+  border-radius: 99px;
+}
+
+/* آیتم‌های فصل (طرح: curr-item) */
+.cs-chapters { display: flex; flex-direction: column; gap: 8px; }
+.cs-ch {
+  border: 1px solid var(--ink-light);
+  border-radius: var(--r-md);
+  background: #fff;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.cs-ch.open {
+  border-color: var(--college);
+  background: var(--college-light);
+  box-shadow: 2.75px 2.75px 0 var(--college);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.cs-ch-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: right;
+}
+.cs-ch .num {
+  width: 36px;
+  height: 36px;
+  background: var(--college-light);
+  border: 1px solid var(--ink);
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ink);
+}
+.cs-ch.open .num {
+  background: var(--college);
+  color: #fff;
+}
+.cs-ch .info b { display: block; font-size: 15px; font-weight: 700; color: var(--ink); }
+.cs-ch .info small { font-size: 12.5px; font-weight: 500; color: var(--ink-subtle); margin-top: 2px; }
+.cs-ch .dur {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-faq);
+  font-variant-numeric: tabular-nums;
+}
+.cs-ch .chev { color: var(--ink-faq); display: grid; place-items: center; }
+
+/* درس‌ها (طرح: curr-lessons) */
+.cs-lessons {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 16px 14px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--college-dark);
+}
+.cs-lessons.open { display: flex; }
+.cs-lesson {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 0;
+  font-size: 13px;
+  color: var(--ink-faq);
+}
+.cs-lesson .ic {
+  display: grid;
+  place-items: center;
+  color: var(--ink-faq);
+  width: 16px;
+  flex-shrink: 0;
+}
+.cs-lesson .t { flex: 1; font-weight: 500; }
+.cs-lesson .tag { font-size: 12px; font-weight: 600; color: var(--ink-subtle); }
+.cs-lesson.free .t { font-weight: 700; color: var(--ink); }
+.cs-lesson.free .tag {
+  color: #009966;
+  font-weight: 700;
+}
+.cs-lesson.locked { color: var(--ink-subtle); }
+.cs-lesson.locked .t { font-weight: 500; }
+
+/* ---------- Sidebar (طرح: s5-side) ---------- */
+.cs-side { display: flex; flex-direction: column; gap: 20px; position: sticky; top: 90px; }
+
+/* کارت ثبت‌نام (طرح: s5-card: رادیوس 24px ساده + شدو 2.75px کهربایی) */
+.cs-card {
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-xl);
+  padding: 24px;
+  box-shadow: 2.75px 2.75px 0 var(--college);
+}
+
+/* تامبنیل گرادیان کهربایی (طرح: s5-card .thumb) */
+.cs-thumb {
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(135deg, var(--college) 0%, var(--college-dark) 100%);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.cs-thumb .play span {
+  width: 72px;
+  height: 72px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  box-shadow: 2.75px 2.75px 0 var(--ink);
+}
+.cs-thumb .play svg { width: 28px; height: 28px; }
+
+/* قیمت (طرح: price-block) */
+.cs-price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+.cs-price .old {
+  font-size: 15px;
+  color: var(--ink-subtle);
+  text-decoration: line-through;
+  margin-inline-start: auto;
+}
+.cs-price b {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+.cs-price .cur { font-size: 16px; font-weight: 600; color: var(--ink-faq); }
+
+/* تخفیف (طرح: discount: قرمز، بدون بوردر و چرخش) */
+.cs-discount {
+  display: inline-block;
+  background: #C60036;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--r-xs);
+  margin-top: 8px;
+}
+
+/* دکمهٔ Pill (طرح: s5-card .btn) */
+.cs-btn {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  background: var(--college);
+  color: #fff;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  box-shadow: 2.75px 2.75px 0 var(--ink);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, background 0.2s ease;
+  will-change: transform;
+}
+.cs-btn:hover {
+  background: var(--college-normal-hover, var(--college-dark));
+  transform: translate(-2px, -2px);
+  box-shadow: 4.75px 4.75px 0 var(--ink);
+}
+.cs-sub-btn {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+}
+.cs-sub-btn:hover { color: var(--college-dark); }
+.cs-divider { height: 1px; background: var(--ink-light); margin: 20px 0; }
+
+/* فکت‌ها (طرح: facts) */
+.cs-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.cs-facts .k { font-size: 12px; color: var(--ink-subtle); font-weight: 500; }
+.cs-facts .v { font-size: 16px; font-weight: 700; color: var(--ink); margin-top: 2px; }
+
+/* کارت مدرس (طرح: s5-instr: رادیوس 17px ساده، بدون شدو) */
+.cs-instr {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: var(--college-light);
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-lg);
+}
+.cs-instr .av {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--college);
+  border: 1.5px solid var(--ink);
+  display: grid;
+  place-items: center;
+  color: var(--college-darker);
+  font-weight: 900;
+  font-size: 15px;
+}
+.cs-instr .who b { display: block; font-size: 15px; font-weight: 700; color: var(--ink); }
+.cs-instr .who small { font-size: 12.5px; font-weight: 500; color: var(--ink-subtle); margin-top: 3px; display: block; }
+
+/* ---------- پنل‌های تب‌ها ---------- */
+.cs-panel-body { padding: 20px 32px 26px; }
+
+/* توضیحات + کلمپ یوتیوبی */
+.cs-desc p {
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 2;
+  color: var(--ink-faq);
+  margin: 0 0 14px;
+}
+.cs-desc p:last-child { margin-bottom: 0; }
+.cs-desc-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--college-dark);
+  cursor: pointer;
+  margin-top: 4px;
+}
+
+/* استایل اختصاصی تب توضیحات دوره */
+.cs-desc-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cs-desc-highlight-box {
+  background: #FFFDF7;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  padding: 18px 22px;
+  box-shadow: 2.5px 2.5px 0 var(--college);
+}
+
+.cs-desc-lead {
+  margin: 0;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.95;
+  color: var(--ink);
+}
+
+.cs-desc-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cs-desc-content p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.9;
+  color: var(--ink-faq);
+}
+
+.cs-desc-facts-card {
+  background: #fff;
+  border: 1.5px solid var(--ink);
+  border-radius: var(--r-md);
+  padding: 18px 20px;
+  box-shadow: 2.5px 2.5px 0 var(--ink);
+  margin-top: 4px;
+}
+
+.cs-desc-facts-card h4 {
+  margin: 0 0 14px;
+  font-size: 14.5px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.cs-desc-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .cs-desc-facts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cs-desc-fact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: #F8FAFC;
+  border: 1px solid var(--ink-light);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.cs-desc-fact-item .fact-k {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--ink-subtle);
+}
+
+.cs-desc-fact-item .fact-v {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* نظرات */
+.cs-reviews { display: flex; flex-direction: column; gap: 12px; }
+.cs-review {
+  border: 1px solid var(--ink-light);
+  border-radius: var(--r-md);
+  padding: 16px 18px;
+  background: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.cs-review:hover { border-color: var(--college); box-shadow: 2.75px 2.75px 0 var(--college-light); }
+.cs-review-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.cs-review-av {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--college-light);
+  border: 1.5px solid var(--ink);
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.cs-review-who b { display: block; font-size: 14px; font-weight: 700; color: var(--ink); }
+.cs-review-who small { font-size: 12px; font-weight: 500; color: var(--ink-subtle); }
+.cs-review-stars { display: inline-flex; gap: 2px; margin-inline-start: auto; }
+.cs-review p { margin: 0; font-size: 13.5px; font-weight: 500; line-height: 1.9; color: var(--ink-faq); }
+
+/* پرسش و پاسخ */
+.cs-qa { display: flex; flex-direction: column; gap: 10px; }
+.cs-qa-item {
+  border: 1px solid var(--ink-light);
+  border-radius: var(--r-md);
+  padding: 14px 18px;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+.cs-qa-item:hover { border-color: var(--college); }
+.cs-qa-item b {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.cs-qa-item p { margin: 0; font-size: 13.5px; font-weight: 500; line-height: 1.9; color: var(--ink-faq); }
+
+/* منابع */
+.cs-resources { display: flex; flex-direction: column; gap: 10px; }
+.cs-resource {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 18px;
+  border: 1px solid var(--ink-light);
+  border-radius: var(--r-md);
+  background: #fff;
+  text-decoration: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.cs-resource:hover { border-color: var(--college); box-shadow: 2.75px 2.75px 0 var(--college-light); }
+.cs-resource-ic {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--college-light);
+  border: 1px solid var(--ink);
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+}
+.cs-resource-info { flex: 1; min-width: 0; }
+.cs-resource-info b { display: block; font-size: 14px; font-weight: 700; color: var(--ink); }
+.cs-resource-info small { font-size: 12px; font-weight: 500; color: var(--ink-subtle); margin-top: 2px; display: block; }
+.cs-resource-dl {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--college-dark);
+  white-space: nowrap;
+}
+
+/* ---------- Responsive: Desktop ≤ 1100px ---------- */
+@media (max-width: 1100px) {
+  .cs-grid { grid-template-columns: 1fr; }
+  .cs-side { position: static; }
+  .cs-hero h1 { font-size: 30px; }
+}
+
+/* ================================================================
+   موبایل: لایوت یوتیوبی (≤ 720px)
+   ترتیب طبیعی: [هدر سایت] [بازگشت] [پلر 16:9] [عنوان+مدرس+توضیح]
+                [تب‌ها] [محتوا]
+   بعد از اسکرول: نوار مینی fixed زیر هدر (ویدیو راست + pp + عنوان)
+   ================================================================ */
+@media (max-width: 720px) {
+  .cs-page { padding: 0 0 60px; background: #fff; }
+
+  /* topbar موبایل: فقط دکمهٔ بازگشت، باریک و بدون کارت */
+  .cs-topbar {
+    border-radius: 0;
+    border-inline: none;
+    border-top: none;
+    margin: 0;
+    padding: 10px 16px;
+    gap: 10px;
+    box-shadow: none;
+    border-bottom: 1px solid var(--ink-light);
+  }
+  .cs-students,
+  .cs-crumbs { display: none; }
+  .cs-back { font-size: 13px; }
+
+  /* Grid موبایل: تک‌ستونه، همه بچه‌ها عرض کامل */
+  .cs-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: stretch;
+  }
+
+  /* ---------- ستون پلر: اول صفحه، هم‌تراز بقیه بخش‌ها ---------- */
+  .cs-player-col {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    padding: 12px 16px 0; /* فاصله از بالا + هم‌عرض با تب‌ها/فصل‌ها */
+  }
+
+  /* ویدیو اصلی: 16:9 با رادیوس و بوردر DS رکاد */
+  .cs-player-col > .cs-video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--r-md);
+    border: 1.5px solid var(--ink);
+    box-shadow: 2.75px 2.75px 0 var(--college);
+  }
+  .cs-player-col > .cs-video .play {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  .cs-player-col > .cs-video .play span {
+    width: 56px;
+    height: 56px;
+  }
+  .cs-player-col > .cs-video .play svg { width: 22px; height: 22px; }
+
+  /* عنوان + مدرس + توضیح (زیر پلر مثل یوتیوب؛ افقی‌ها از والد میاد) */
+  .cs-title-row {
+    padding: 10px 0 12px;
+    border-bottom: 1px solid var(--ink-light);
+  }
+  .cs-title-row h1 {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0 0 4px;
+    letter-spacing: 0;
+  }
+  .cs-title-sub {
+    display: block;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--ink-subtle);
+    margin-bottom: 6px;
+  }
+  .cs-lead-clamp { font-size: 13px; line-height: 1.9; color: var(--ink-faq); font-weight: 500; }
+  .cs-lead-clamp p { margin: 0; }
+  .cs-desc-more { font-size: 12px; margin-top: 2px; }
+
+  /* ---------- تب‌ها: در flow (مینی‌بار جاشو می‌گیره وقتی رد شد) ---------- */
+  .cs-tabs {
+    background: #fff;
+    padding: 0 12px;
+    border-bottom: 1px solid var(--ink-light);
+  }
+  .cs-tabs button { padding: 13px 12px; font-size: 13px; }
+
+  /* ---------- محتوای اصلی: بدون کارت، flush ---------- */
+  .cs-main {
+    border-radius: 0;
+    border: none;
+    background: #fff;
+  }
+  .cs-hero { display: none; }
+
+  .cs-curriculum { padding: 16px 16px 22px; }
+  .cs-panel-body { padding: 16px; }
+  .cs-ch-head { grid-template-columns: auto 1fr auto; padding: 12px; gap: 12px; }
+  .cs-ch .dur { display: none; }
+  .cs-ch .num { width: 30px; height: 30px; font-size: 12px; }
+
+  /* سایدبار موبایل: زیر محتوا، هم‌عرض با بقیه، بدون تامبنیل تکراری */
+  .cs-side {
+    display: flex;
+    padding: 16px 0 8px;
+  }
+  .cs-side .cs-thumb-side { display: none; }
+  .cs-card { padding: 20px 16px; }
+  /* قیمت و تخفیف موبایل: وسط‌چین */
+  .cs-card .cs-price { justify-content: center; text-align: center; }
+  .cs-card .cs-price .old { margin-inline-start: 0; }
+  .cs-card .cs-discount { display: block; width: fit-content; margin-inline: auto; }
+  .cs-side .cs-instr { border-radius: var(--r-lg); margin: 0; }
+
+  /* ---------- نوار مینی چسبان زیر هدر سایت ----------
+     ظاهرشدن با .on: fixed زیر sticky header سایت، تمام‌عرض، باریک */
+  .cs-mini {
+    position: fixed;
+    top: var(--cs-hh, 64px);
+    right: 0;
+    left: 0;
+    z-index: 49; /* زیر هدر سایت (z:50) */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1.5px solid var(--ink);
+    box-shadow: 0 2.75px 0 var(--college);
+    opacity: 0;
+    transform: translateY(-110%);
+    transition: opacity .28s ease, transform .28s cubic-bezier(.4, 0, .2, 1);
+    pointer-events: none;
+  }
+  .cs-mini.on {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  /* ویدیوی مینیاتوری: سمت راست (RTL اولین آیتم) */
+  .cs-mini-thumb {
+    flex-shrink: 0;
+    width: 64px;
+    height: 38px;
+    background: linear-gradient(135deg, var(--college) 0%, var(--college-dark) 100%);
+    border: 1.5px solid var(--ink);
+    border-radius: 8px 0 8px 0;
+    display: grid;
+    place-items: center;
+    color: #fff;
+    cursor: pointer;
+    padding: 0;
+  }
+  /* دکمهٔ play/pause */
+  .cs-mini-pp {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    border: 1.5px solid var(--ink);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 0;
+    box-shadow: 1.5px 1.5px 0 var(--college);
+  }
+  .cs-mini-info {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+  }
+  .cs-mini-info b {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cs-mini-info small {
+    display: block;
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--ink-subtle);
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cs-mini-back {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    color: var(--ink);
+  }
+  .cs-mini-back svg { width: 17px; height: 17px; }
+}
+
+/* دسکتاپ: نوار مینی هیچ‌وقت */
+@media (min-width: 721px) {
+  .cs-mini { display: none; }
+}

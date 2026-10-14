@@ -1,0 +1,407 @@
+/* ============================================================
+   صفحه بازگشت از درگاه پرداخت کالج رکاد (Payment Callback)
+   استایل نئوبروتالیست با پالت اختصاصی رکاد
+   ============================================================ */
+
+.pc-page {
+  min-height: 75vh;
+  padding: 3.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-iransans), "IRANSansX", system-ui, -apple-system, sans-serif;
+  direction: rtl;
+}
+
+.pc-card {
+  width: 100%;
+  max-width: 560px;
+  background: #ffffff;
+  border: 2.5px solid var(--ink, #1F1E1D);
+  border-radius: 22px 0 22px 0;
+  box-shadow: 6px 6px 0 var(--ink, #1F1E1D);
+  padding: 2.25rem 2.25rem;
+  position: relative;
+}
+
+.pc-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* آیکون وضعیت */
+.pc-status-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px 0 16px 0;
+  border: 2px solid var(--ink, #1F1E1D);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 0 var(--ink, #1F1E1D);
+}
+
+.pc-status-icon.success {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+.pc-status-icon.error {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* سربرگ */
+.pc-head {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pc-title {
+  font-size: 1.5rem;
+  font-weight: 950;
+  color: var(--ink, #1F1E1D);
+  line-height: 1.35;
+}
+
+.pc-subtitle {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink-subtle, #62605B);
+}
+
+/* باکس رسید پرداخت */
+.pc-receipt-box {
+  width: 100%;
+  background: var(--bg-cream, #FFFDF8);
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 14px 0 14px 0;
+  box-shadow: 3.5px 3.5px 0 var(--ink, #1F1E1D);
+  padding: 1.15rem 1.25rem;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.pc-receipt-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 0.85rem;
+  border-bottom: 1.5px dashed rgba(31, 30, 29, 0.16);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.pc-receipt-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.pc-receipt-label {
+  color: var(--ink-subtle, #62605B);
+  font-size: 12.5px;
+  font-weight: 750;
+}
+
+.pc-receipt-val {
+  color: var(--ink, #1F1E1D);
+  font-weight: 950;
+}
+
+.pc-receipt-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #ecfdf5;
+  color: #065f46;
+  border: 1.5px solid #059669;
+  border-radius: 999px;
+  padding: 2.5px 9px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+/* بخش لایسنس اسپات‌پلیر */
+.pc-license-wrap {
+  width: 100%;
+  background: var(--bg-cream, #FFFDF8);
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 14px 0 14px 0;
+  box-shadow: 3.5px 3.5px 0 var(--ink, #1F1E1D);
+  padding: 1.15rem 1.25rem;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pc-license-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12.5px;
+  font-weight: 900;
+  color: var(--ink, #1F1E1D);
+}
+
+.pc-license-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #FFF4E5;
+  color: #92400e;
+  border: 1.5px solid var(--college, #F8A41D);
+  border-radius: 999px;
+  padding: 2.5px 9px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+/* استایل باکس لایسنس اسپات‌پلیر / کد پیگیری */
+.mc-spotplayer-box {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1.5px dashed var(--ink, #1F1E1D);
+  border-radius: 12px 0 12px 0;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  direction: rtl;
+  min-width: 0;
+}
+
+.mc-spotplayer-box-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 850;
+  color: var(--ink, #1F1E1D);
+  overflow: hidden;
+  min-width: 0;
+  flex: 1;
+}
+
+.mc-spotplayer-box-info span {
+  direction: ltr;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  min-width: 0;
+  flex: 1;
+}
+
+.mc-copy-key-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 6px 0 6px 0;
+  border: 1.5px solid var(--ink, #1F1E1D);
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  font-size: 11.5px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.mc-copy-key-btn:hover {
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink, #1F1E1D);
+}
+
+/* باکس کد پیگیری در حالت پرداخت ناموفق */
+.pc-error-auth-box {
+  justify-content: center;
+  padding: 9px 14px;
+}
+
+.pc-error-auth-box .mc-spotplayer-box-info {
+  justify-content: center;
+  flex: none;
+  max-width: 100%;
+}
+
+.pc-error-auth-box .mc-spotplayer-box-info span {
+  flex: none;
+  text-align: center;
+}
+
+/* دانلود اپ‌ها */
+.pc-apps-section {
+  padding-top: 0.85rem;
+  border-top: 1.5px dashed rgba(31, 30, 29, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.pc-apps-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--ink, #1F1E1D);
+}
+
+.pc-apps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.pc-app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  border: 1.5px solid var(--ink, #1F1E1D);
+  border-radius: 8px 0 8px 0;
+  padding: 7px 6px;
+  font-size: 11.5px;
+  font-weight: 850;
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  transition: all 0.15s ease;
+}
+
+.pc-app-btn:hover {
+  background: var(--college-light, #FFF4E5);
+  box-shadow: 1px 1px 0 var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+}
+
+/* دکمه‌های اقدام فوتر */
+.pc-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.pc-btn-primary {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--college, #F8A41D);
+  color: var(--ink, #1F1E1D);
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 10px 0 10px 0;
+  box-shadow: 3.5px 3.5px 0 var(--ink, #1F1E1D);
+  padding: 12px 18px;
+  font-size: 13.5px;
+  font-weight: 950;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pc-btn-primary:hover {
+  background: #e69415;
+  box-shadow: 2px 2px 0 var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+}
+
+.pc-btn-secondary {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--ink, #1F1E1D);
+  border: 2px solid var(--ink, #1F1E1D);
+  border-radius: 10px 0 10px 0;
+  box-shadow: 2.5px 2.5px 0 var(--ink, #1F1E1D);
+  padding: 12px 18px;
+  font-size: 13.5px;
+  font-weight: 850;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pc-btn-secondary:hover {
+  background: #f5f5f4;
+  box-shadow: 1.5px 1.5px 0 var(--ink, #1F1E1D);
+  transform: translate(1px, 1px);
+}
+
+/* لودینگ و خطا */
+.pc-loading-wrap {
+  padding: 3rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+/* ریسپانسیو */
+@media (max-width: 640px) {
+  .pc-card {
+    padding: 1.5rem 1.15rem;
+    border-radius: 18px 0 18px 0;
+    box-shadow: 4px 4px 0 var(--ink, #1F1E1D);
+  }
+
+  .pc-card-inner {
+    gap: 1.25rem;
+  }
+
+  .pc-title {
+    font-size: 1.25rem;
+  }
+
+  .pc-receipt-box,
+  .pc-license-wrap {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+
+  .pc-apps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .pc-actions {
+    flex-direction: row;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .pc-btn-primary,
+  .pc-btn-secondary {
+    flex: 1;
+    width: auto;
+    padding: 11px 8px;
+    font-size: 12.5px;
+    white-space: nowrap;
+  }
+}

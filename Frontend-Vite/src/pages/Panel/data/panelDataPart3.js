@@ -1,0 +1,155 @@
+export const mentorChats = [
+  {
+    id: 1,
+    name: "دکتر رستمی",
+    role: "منتور تخصصی · الگوریتم",
+    initial: "ر",
+    last: "تمرین گراف رو دیدم، ایده‌ت درسته. فقط پیچیدگی زمانی رو بهینه کن.",
+    time: "۱۰ دقیقه پیش",
+    unread: 2,
+    online: true,
+  },
+  {
+    id: 2,
+    name: "مهندس کریمی",
+    role: "منتور مسیر شغلی",
+    initial: "ک",
+    last: "رزومه‌ات رو بردم شرکت همکار نشون بدم",
+    time: "دیروز",
+    unread: 0,
+    online: true,
+  },
+  {
+    id: 3,
+    name: "دکتر عزیزی",
+    role: "منتور · هوش مصنوعی",
+    initial: "ع",
+    last: "منابع فصل ۲ رو برات فرستادم.",
+    time: "۳ روز پیش",
+    unread: 0,
+    online: false,
+  },
+];
+
+export const mentorMessages = [
+  { from: "me", text: "سلام استاد، تمرین ۴ رو شروع کردم ولی تو بخش Dijkstra گیر کردم." },
+  { from: "mentor", text: "سلام پارسا اول صف اولویت رو پیاده کن، بعد الگوریتم راحت می‌شه." },
+  { from: "me", text: "الان امتحانش می‌کنم، ممنون" },
+  { from: "mentor", text: "تمرین گراف رو دیدم، ایده‌ت درسته. فقط پیچیدگی زمانی رو بهینه کن." },
+];
+
+export const studyGroups = [
+  {
+    id: 1,
+    name: "گروه الگوریتم و مسابقه",
+    course: "ساختمان داده و الگوریتم",
+    members: 6,
+    max: 8,
+    next: "جلسهٔ بعد: پنج‌شنبه ۱۹:۰۰ · Google Meet",
+    joined: true,
+    color: "var(--navy)",
+  },
+  {
+    id: 2,
+    name: "یادگیری ماشین از صفر",
+    course: "مبانی هوش مصنوعی",
+    members: 5,
+    max: 8,
+    next: "جلسهٔ بعد: جمعه ۱۷:۰۰ · کلاس آنلاین",
+    joined: true,
+    color: "var(--teal-alt)",
+  },
+  {
+    id: 3,
+    name: "پروژه‌محور: معماری کامپیوتر",
+    course: "معماری کامپیوتر",
+    members: 8,
+    max: 8,
+    next: "ظرفیت تکمیل (لیست انتظار)",
+    joined: false,
+    color: "var(--accent)",
+  },
+];
+
+export const events = [
+  {
+    id: 1,
+    day: "۱۴",
+    month: "شهریور",
+    title: "کلاس زنده: الگوریتم‌های گراف",
+    time: "۱۰:۳۰",
+    host: "دکتر رستمی",
+    kind: "کلاس زنده",
+    place: "کلاس آنلاین · لینک در پروفایل کلاس",
+    registered: true,
+    featured: true,
+  },
+  {
+    id: 2,
+    day: "۱۶",
+    month: "شهریور",
+    title: "وبینار: مصاحبه شغلی تکنیکال",
+    time: "۲۰:۰۰",
+    host: "مهندس کریمی",
+    kind: "وبینار",
+    place: "آنلاین · رایگان",
+    registered: true,
+  },
+  {
+    id: 3,
+    day: "۲۴",
+    month: "شهریور",
+    title: "شب استارتاپ دانشجو",
+    time: "۱۸:۰۰",
+    host: "میهمانان ویژه",
+    kind: "رویداد حضوری",
+    place: "پردیس مرکزی · سالن همایش",
+    registered: false,
+    seats: "۲۰۰ ظرفیت",
+    featured: true,
+  },
+  {
+    id: 4,
+    day: "۰۵",
+    month: "مهر",
+    title: "کارگاه عملی: رزومه و لینکدین",
+    time: "۱۷:۰۰",
+    host: "تیم بازار کار رکاد",
+    kind: "کارگاه",
+    place: "آنلاین · ویژهٔ هنرجویان",
+    registered: false,
+  },
+];
+
+export const supportTickets = [
+  {
+    id: 1,
+    subject: "خطا در پخش ویدیوی جلسهٔ ۴",
+    dept: "پشتیبانی فنی",
+    status: "answering",
+    updated: "۲۰ دقیقه پیش",
+    messages: 3,
+  },
+  {
+    id: 2,
+    subject: "درخواست تمدید دسترسی دوره",
+    dept: "امور هنرجویان",
+    status: "open",
+    updated: "۱ روز پیش",
+    messages: 1,
+  },
+  {
+    id: 3,
+    subject: "صدور گواهی طراحی وب",
+    dept: "امور هنرجویان",
+    status: "closed",
+    updated: "۱ هفته پیش",
+    messages: 5,
+  },
+];
+
+export const supportFaqs = [
+  { q: "چطور ویدیوی دوره رو دانلود کنم؟", a: "ویدیوهای جلسات از پنل کلاس، بخش «منابع» قابل دانلودن." },
+  { q: "گواهی کی صادر می‌شه؟", a: "بعد از تکمیل همهٔ فصل‌ها و قبولی در امتحان نهایی، حداکثر ۷۲ ساعت کاری." },
+  { q: "می‌تونم منتورم رو عوض کنم؟", a: "بله، از همین صفحه دکمهٔ «تغییر منتور» رو بزن." },
+];

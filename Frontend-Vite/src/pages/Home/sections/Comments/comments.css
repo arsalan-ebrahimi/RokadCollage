@@ -1,0 +1,209 @@
+/* =============================================
+   COMMENTS: V3 · Split card (colored avatar side)
+   Tailwind-based (Tailwind v4)
+   ============================================= */
+@reference "tailwindcss";
+
+/* Section shell */
+.cmt3-section {
+  @apply relative overflow-hidden;
+  background: var(--college-light);
+}
+
+.cmt3-title {
+  font-size: 44px;
+}
+
+/* Carousel base */
+.cmt3-carousel {
+  @apply relative;
+  overflow-x: hidden;
+  padding: 20px 12px 30px;
+}
+.cmt3-track {
+  @apply flex items-stretch;
+  gap: 24px;
+  transition: transform .5s cubic-bezier(.4, 0, .2, 1);
+  will-change: transform;
+}
+
+/* Card: flex column so .body stretches to full height (equal cards) */
+.cmt3-card {
+  flex: 0 0 calc(50% - 12px);
+  @apply relative flex flex-col;
+  transform: rotate(-.4deg);
+  transition: transform .25s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+.cmt3-card:nth-child(even) { transform: rotate(.4deg); }
+.cmt3-card:hover { transform: rotate(-.4deg) translateY(-4px); }
+.cmt3-card:nth-child(even):hover { transform: rotate(.4deg) translateY(-4px); }
+.cmt3-card .shadow {
+  @apply absolute pointer-events-none;
+  top: 5px; left: 5px; right: -5px; bottom: -5px;
+  background: var(--ink);
+  border-radius: 1.5rem 0 1.5rem 0;
+}
+.cmt3-card .body {
+  @apply relative bg-white flex-1 overflow-hidden;
+  z-index: 1;
+  border: 2px solid var(--ink);
+  border-radius: 1.5rem 0 1.5rem 0;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  grid-template-rows: 1fr;
+  min-height: 320px;
+}
+
+/* Avatar side */
+.cmt3-card .avatar-side {
+  @apply relative flex flex-col items-center justify-end text-center;
+  padding: 24px 16px;
+  color: var(--white);
+  border-left: 2px solid var(--ink);
+  background: linear-gradient(180deg, var(--college) 0%, var(--college-dark) 100%);
+}
+.cmt3-card:nth-child(2) .avatar-side { background: linear-gradient(180deg, var(--navy) 0%, #15244a 100%); }
+.cmt3-card:nth-child(3) .avatar-side { background: linear-gradient(180deg, var(--teal) 0%, var(--teal-dark) 100%); }
+.cmt3-card:nth-child(4) .avatar-side { background: linear-gradient(180deg, var(--accent) 0%, #A81344 100%); }
+.cmt3-card:nth-child(5) .avatar-side { background: linear-gradient(180deg, var(--college) 0%, var(--college-dark) 100%); }
+.cmt3-card:nth-child(6) .avatar-side { background: linear-gradient(180deg, var(--navy) 0%, #15244a 100%); }
+.cmt3-card .avatar-side::before {
+  content: "";
+  @apply absolute inset-0;
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,.2) 0 30px, transparent 30px),
+    radial-gradient(circle at 70% 70%, rgba(0,0,0,.15) 0 40px, transparent 40px);
+}
+.cmt3-card .avatar-big {
+  @apply relative flex items-center justify-center bg-white;
+  width: 78px; height: 78px;
+  border-radius: 20px 0 20px 0;
+  color: var(--ink);
+  border: 2.5px solid var(--ink);
+  font-weight: 900; font-size: 30px;
+  margin-bottom: 12px;
+  box-shadow: 3px 3px 0 rgba(0,0,0,.25);
+}
+.cmt3-card .name-white { @apply relative font-black; font-size: 15px; margin: 0 0 3px; }
+.cmt3-card .role-white { @apply relative font-semibold; font-size: 11.5px; opacity: .85; margin: 0; }
+.cmt3-stars { @apply flex mt-2.5; gap: 2px; }
+.cmt3-stars svg { width: 14px; height: 14px; color: var(--white); }
+
+/* Content side */
+.cmt3-card .content-side {
+  @apply relative flex flex-col;
+  padding: 28px 30px;
+  gap: 14px;
+}
+.cmt3-card .content-side::before {
+  content: "\201C";
+  @apply absolute;
+  top: -4px; right: 20px;
+  font-size: 90px; line-height: 1;
+  color: var(--college); opacity: .3;
+  font-family: Georgia, serif; font-weight: 900;
+}
+.cmt3-card .head-row {
+  @apply relative flex items-center justify-between;
+}
+.cmt3-card .course-chip {
+  @apply text-white;
+  background: var(--ink);
+  padding: 5px 12px;
+  border-radius: 9px 0 9px 0;
+  font-weight: 900; font-size: 11.5px;
+}
+.cmt3-card .date { @apply font-bold; font-size: 11px; color: var(--ink-subtle); }
+.cmt3-card .quote-text {
+  @apply relative flex-1;
+  font-size: 15px; line-height: 2;
+  color: var(--ink-soft); font-weight: 500;
+}
+.cmt3-card .quote-text .hl { @apply font-black; color: var(--ink); }
+.cmt3-card .foot-row {
+  @apply flex items-center justify-between;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(41,40,39,.2);
+  font-size: 12px; font-weight: 700; color: var(--ink-subtle);
+}
+.cmt3-card .status { @apply inline-flex items-center; gap: 6px; }
+.cmt3-card .pulse {
+  width: 8px; height: 8px;
+  background: var(--teal);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px rgba(89,187,175,.25);
+}
+
+/* Nav row */
+.cmt3-nav {
+  @apply flex items-center justify-between flex-wrap;
+  margin-top: 32px;
+  gap: 16px;
+}
+.cmt3-dots { @apply flex justify-center; gap: 8px; }
+.cmt3-dot {
+  @apply rounded-full cursor-pointer;
+  width: 10px; height: 10px;
+  background: rgba(41,40,39,.2);
+  transition: all .3s;
+  padding: 0;
+  border: 1.5px solid transparent;
+}
+.cmt3-dot.active {
+  @apply rounded-full;
+  background: var(--college);
+  width: 32px;
+  border-color: var(--ink);
+}
+.cmt3-nav-arrows { @apply flex; gap: 10px; }
+.cmt3-counter {
+  @apply inline-flex items-center font-extrabold;
+  gap: 10px;
+  font-size: 14px; color: var(--ink-subtle);
+}
+.cmt3-counter .cur {
+  @apply font-black bg-white;
+  color: var(--ink); font-size: 20px;
+  border: 2px solid var(--ink);
+  padding: 4px 12px;
+  border-radius: 10px 0 10px 0;
+  box-shadow: 2px 2px 0 var(--college);
+  transform: rotate(-2deg);
+}
+
+/* Icon buttons */
+.cmt3-icon-btn {
+  @apply relative inline-flex items-center justify-center bg-white cursor-pointer;
+  width: 48px; height: 48px;
+  border-radius: 14px 0 14px 0;
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--college); /* لایه کالج پشت دکمه: نزدیک، مثل دکمه شمارنده */
+  transition: transform .22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow .22s ease, background-color .2s ease;
+  font-family: inherit;
+  will-change: transform;
+}
+.cmt3-icon-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 4px 4px 0 var(--college);
+  background: var(--college-light);
+}
+.cmt3-icon-btn svg { width: 18px; height: 18px; }
+
+/* Track: no transition while finger-dragging (class toggled in JS) */
+.cmt3-carousel.dragging { cursor: grabbing; user-select: none; -webkit-user-select: none; }
+.cmt3-carousel.dragging .cmt3-track { transition: none; }
+
+/* Mobile: swipe + dots & compact controls */
+@media (max-width: 720px) {
+  .cmt3-title { font-size: 24px; line-height: 1.35; }
+  .cmt3-card { flex: 0 0 100%; }
+  .cmt3-card .body { grid-template-columns: 1fr; min-height: auto; }
+  .cmt3-card .avatar-side { border-left: none; border-bottom: 2px solid var(--ink); padding: 22px 16px; }
+  .cmt3-card .content-side { padding: 20px 18px; }
+  .cmt3-nav { display: flex; justify-content: center; gap: 12px; margin-top: 20px; }
+  .cmt3-nav-arrows { display: none !important; }
+  .cmt3-icon-btn { width: 42px; height: 42px; }
+  .cmt3-carousel { touch-action: pan-y; cursor: grab; padding: 12px 4px 20px; }
+}

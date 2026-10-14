@@ -1,0 +1,333 @@
+/* ============================================================
+   استایل مودال پرداخت و تسویه حساب کالج رکاد
+   ============================================================ */
+
+.chk-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(14, 21, 41, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  animation: chkFadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes chkFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.chk-card {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  background: #ffffff;
+  border: 2.5px solid var(--ink);
+  border-radius: 20px 0 20px 0;
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: 2rem 2.2rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  animation: chkSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes chkSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.chk-close {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  width: 34px;
+  height: 34px;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chk-close:hover {
+  transform: translateY(-1.5px) rotate(90deg);
+  background: var(--female-light);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.chk-head {
+  margin-bottom: 1.4rem;
+  padding-left: 2.5rem;
+}
+
+.chk-pill {
+  display: inline-block;
+  background: var(--college-light);
+  border: 1.5px solid var(--ink);
+  border-radius: 6px 0 6px 0;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--college-darker);
+  margin-bottom: 0.6rem;
+}
+
+.chk-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.chk-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
+/* کوپن */
+.chk-coupon-box {
+  margin-bottom: 1.2rem;
+}
+
+.chk-coupon-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chk-coupon-form input {
+  flex: 1;
+  padding: 0.65rem 0.85rem;
+  background: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 8px 0 8px 0;
+  font-size: 0.85rem;
+  color: var(--ink);
+  font-family: inherit;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: all 0.18s ease;
+}
+
+.chk-coupon-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.chk-coupon-form button {
+  background: var(--ink);
+  color: #fff;
+  border: 2px solid var(--ink);
+  border-radius: 8px 0 8px 0;
+  padding: 0.65rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: all 0.18s ease;
+}
+
+.chk-coupon-form button:hover:not(:disabled) {
+  transform: translateY(-1.5px);
+  background: var(--accent);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.chk-coupon-form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.chk-coupon-success {
+  margin-top: 0.5rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--teal-dark);
+  background: var(--teal-light);
+  border: 1.5px solid var(--ink);
+  padding: 6px 10px;
+  border-radius: 6px 0 6px 0;
+}
+
+.chk-coupon-error {
+  margin-top: 0.5rem;
+  font-size: 12px;
+  font-weight: 700;
+  color: #9b1c1c;
+  background: #fde8e8;
+  border: 1.5px solid #e02424;
+  padding: 6px 10px;
+  border-radius: 6px 0 6px 0;
+}
+
+/* درگاه‌ها */
+.chk-gateways {
+  margin-bottom: 1.2rem;
+}
+
+.chk-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.chk-gateway-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.65rem 0.85rem;
+  background: #f8fafc;
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: all 0.18s ease;
+}
+
+.chk-gateway-item input {
+  position: absolute;
+  opacity: 0;
+}
+
+.chk-gateway-item.active {
+  background: var(--college-light);
+  border-color: var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.chk-gw-logo {
+  font-size: 1.5rem;
+}
+
+.chk-gw-info b {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ink);
+}
+
+.chk-gw-info small {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--ink-subtle);
+  margin-top: 2px;
+}
+
+/* فاکتور */
+.chk-invoice {
+  background: #f8fafc;
+  border: 2px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.3rem;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.chk-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin-bottom: 0.4rem;
+}
+
+.chk-row.discount {
+  color: #057a55;
+  font-weight: 700;
+}
+
+.chk-row.total {
+  border-top: 1.5px dashed var(--ink-light);
+  padding-top: 0.5rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.chk-row.total b {
+  color: var(--accent);
+  font-size: 1.15rem;
+}
+
+/* اکشن */
+.chk-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.chk-pay-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--college);
+  color: var(--ink);
+  border: 2.5px solid var(--ink);
+  border-radius: 10px 0 10px 0;
+  padding: 0.85rem 1.4rem;
+  font-size: 0.98rem;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.chk-pay-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 5.5px 5.5px 0 var(--ink);
+}
+
+.chk-pay-btn:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+.chk-pay-btn:disabled {
+  opacity: 0.8;
+  cursor: wait;
+}
+
+.chk-loading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chk-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2.5px solid var(--ink);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: chkSpin 0.7s linear infinite;
+}
+
+@keyframes chkSpin {
+  to { transform: rotate(360deg); }
+}
+
+.chk-security-note {
+  font-size: 0.75rem;
+  color: var(--ink-subtle);
+}

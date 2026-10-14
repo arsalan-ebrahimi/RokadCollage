@@ -89,7 +89,11 @@ export const getAll = catchAsync(async (req, res, next) => {
  * Retrieve full blog post details including full sanitized content.
  */
 export const getOne = catchAsync(async (req, res, next) => {
-  const doc = await Blog.findById(req.params.id);
+  const doc = await Blog.findByIdAndUpdate(
+    req.params.id,
+    { $inc: { views: 1 } },
+    { new: true }
+  );
   if (!doc) {
     return next(new HandleERROR("مقاله مورد نظر یافت نشد", 404));
   }

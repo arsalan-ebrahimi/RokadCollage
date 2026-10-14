@@ -28,6 +28,11 @@ const blogSchema = new mongoose.Schema(
       type: String,
       required: [true, "ارسال تصویر شاخص بلاگ الزامی است"],
     },
+    views: {
+      type: Number,
+      default: 0,
+      min: [0, "تعداد بازدید نمی‌تواند منفی باشد"],
+    },
   },
   {
     timestamps: true,
@@ -36,6 +41,7 @@ const blogSchema = new mongoose.Schema(
 
 blogSchema.index({ category: 1, createdAt: -1 });
 blogSchema.index({ createdAt: -1 });
+blogSchema.index({ views: -1 });
 
 const Blog = mongoose.model("Blog", blogSchema);
 export default Blog;
